@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南岛 6 天景点清单 · 8.30 — 9.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Noto+Serif+SC:wght@300;400;600;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ece4d4; --paper: #f5efe2; --ink: #1a1f1d;
+  --moss: #1f3a32; --moss-dim: #3d564d;
+  --rust: #b85831; --rust-dim: #8e3f20;
+  --line: #c0b59f; --line-soft: #d6cdb8;
+  --muted: #6e6655; --gold: #c89a3c; --xhs: #ff2442;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: 'Inter', sans-serif; line-height: 1.6;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(184,88,49,0.04), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(31,58,50,0.05), transparent 40%);
+  min-height: 100vh; padding-bottom: 6rem;
+}
+header { padding: 3rem 1.5rem 2rem; border-bottom: 1px solid var(--line); }
+.kicker { font-size:.7rem; letter-spacing:.35em; text-transform:uppercase; color: var(--rust); font-weight:500; margin-bottom:1rem; }
+h1.title { font-family:'Noto Serif SC',serif; font-weight:900; font-size: clamp(2.4rem, 9vw, 3.6rem); line-height:1.05; color: var(--moss); letter-spacing:-.02em; margin-bottom:.6rem; }
+h1.title em { font-family:'Fraunces',serif; font-style:italic; font-weight:300; color: var(--rust); font-variation-settings:'opsz' 144; }
+.dateline { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color: var(--moss-dim); margin-bottom:1.5rem; display:flex; flex-wrap:wrap; gap:.4rem .8rem; }
+.dateline .dot { color: var(--line); }
+.intro { font-size:.95rem; color: var(--muted); line-height:1.7; max-width:32rem; margin-top:1rem; }
+.intro strong { color: var(--ink); font-weight:500; }
+.intro .red { color: var(--xhs); font-weight:500; }
+.intro .moss { color: var(--moss); font-weight:500; }
+.legend { margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:.4rem; font-size:.7rem; }
+.legend-item { padding:.25rem .6rem; border:1px solid var(--line); border-radius:999px; color: var(--moss-dim); letter-spacing:.05em; }
+.legend-item.must { border-color: var(--rust); color: var(--rust); }
+.legend-item.season { border-color: var(--gold); color: var(--rust-dim); background: rgba(200,154,60,.08); }
+
+section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
+.section-head { display:flex; align-items:baseline; gap:.8rem; margin-bottom:1.6rem; padding-bottom:.8rem; border-bottom: 1px solid var(--line-soft); }
+.section-num { font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:1.6rem; color: var(--rust); }
+.section-head h2 { font-family:'Noto Serif SC',serif; font-weight:600; font-size:1.4rem; color: var(--moss); }
+.section-head .en { font-family:'Fraunces',serif; font-style:italic; color: var(--muted); font-size:.85rem; margin-left:auto; }
+
+.card {
+  background: var(--paper); border: 1px solid var(--line-soft);
+  border-radius:8px; margin-bottom:1.2rem; position:relative;
+  overflow:hidden; transition: all .3s ease;
+}
+.card.selected {
+  border-color: var(--rust); border-width:2px;
+  background: linear-gradient(to bottom right, var(--paper), rgba(184,88,49,.06));
+}
+.card.selected::before {
+  content:'✓'; position:absolute; top:.7rem; right:.7rem;
+  width:1.8rem; height:1.8rem; background: var(--rust); color: var(--paper);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:1rem; font-weight:600; z-index:5; animation: pop .3s ease;
+  box-shadow: 0 2px 8px rgba(184,88,49,.3);
+}
+@keyframes pop { from { transform:scale(0); } to { transform:scale(1); } }
+
+/* ── decorative banner per category ── */
+.banner {
+  height: 100px; position:relative; overflow:hidden; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--banner-bg, linear-gradient(135deg, #d6cdb8, #c0b59f));
+  transition: filter .3s ease;
+}
+.card:hover .banner { filter: brightness(1.05); }
+.banner::before {
+  content:''; position:absolute; inset:0;
+  background: var(--banner-pattern, none);
+  opacity: .25;
+}
+.banner-en {
+  font-family:'Fraunces',serif; font-style:italic; font-weight:300;
+  font-size: 2.2rem; color: var(--banner-text, rgba(255,255,255,.95));
+  letter-spacing:.02em; line-height:1;
+  text-shadow: 0 2px 12px rgba(0,0,0,.15);
+  position: relative; z-index:2;
+  font-variation-settings:'opsz' 144;
+}
+.banner-tag {
+  font-size:.7rem; letter-spacing:.3em; text-transform:uppercase;
+  color: var(--banner-text, rgba(255,255,255,.85));
+  margin-top:.35rem; font-weight:500;
+  position:relative; z-index:2;
+}
+
+/* category color variations */
+.cat-lake {
+  --banner-bg: linear-gradient(135deg, #4a8da8 0%, #6ab0c4 50%, #a8d0d8 100%);
+  --banner-pattern: repeating-linear-gradient(0deg, transparent 0, transparent 18px, rgba(255,255,255,.15) 18px, rgba(255,255,255,.15) 19px);
+}
+.cat-mountain {
+  --banner-bg: linear-gradient(135deg, #6b7a85 0%, #95a3ad 40%, #d4dde2 100%);
+  --banner-pattern: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.2) 40%, rgba(255,255,255,.2) 50%, transparent 50%, transparent 70%, rgba(255,255,255,.15) 70%, rgba(255,255,255,.15) 80%, transparent 80%);
+}
+.cat-fiord {
+  --banner-bg: linear-gradient(180deg, #2a4a52 0%, #3d6168 60%, #5a7a82 100%);
+  --banner-pattern: repeating-linear-gradient(90deg, transparent 0, transparent 20px, rgba(255,255,255,.08) 20px, rgba(255,255,255,.08) 21px);
+}
+.cat-town {
+  --banner-bg: linear-gradient(135deg, #b08560 0%, #c79c75 50%, #d8b894 100%);
+  --banner-pattern: repeating-linear-gradient(45deg, transparent 0, transparent 14px, rgba(255,255,255,.12) 14px, rgba(255,255,255,.12) 15px);
+}
+.cat-thrill {
+  --banner-bg: linear-gradient(135deg, #b85831 0%, #d4794d 50%, #e8a070 100%);
+  --banner-pattern: repeating-linear-gradient(-45deg, transparent 0, transparent 12px, rgba(255,255,255,.15) 12px, rgba(255,255,255,.15) 13px);
+}
+.cat-slow {
+  --banner-bg: linear-gradient(135deg, #5a7a5e 0%, #7a9882 50%, #aac0a4 100%);
+  --banner-pattern: radial-gradient(circle at 20% 50%, rgba(255,255,255,.18) 1.5px, transparent 2px), radial-gradient(circle at 60% 30%, rgba(255,255,255,.18) 1.5px, transparent 2px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.18) 1.5px, transparent 2px);
+}
+.cat-season {
+  --banner-bg: linear-gradient(135deg, #c89a3c 0%, #d8b264 50%, #e8c890 100%);
+  --banner-pattern: radial-gradient(circle at 30% 40%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 70% 60%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 50% 80%, rgba(255,255,255,.2) 1px, transparent 1.5px);
+}
+
+.card-main { padding: 1.4rem 1.4rem 0.8rem; cursor: pointer; position:relative; }
+.card-num { font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:2.4rem; color: var(--rust); line-height:.9; display:inline-block; margin-bottom:.5rem; }
+.card-num::before { content:'№'; font-size:.6rem; vertical-align:super; font-style:normal; margin-right:.15rem; color: var(--muted); font-weight:500; letter-spacing:.1em; }
+.card h3 { font-family:'Noto Serif SC',serif; font-weight:600; font-size:1.2rem; color: var(--moss); margin-bottom:.15rem; line-height:1.3; padding-right:2.5rem; }
+.card .en { font-family:'Fraunces',serif; font-style:italic; font-size:.85rem; color: var(--muted); margin-bottom:.8rem; }
+.card .desc { font-size:.92rem; color: var(--ink); line-height:1.65; margin-bottom:.9rem; }
+.tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.4rem; }
+.tag { font-size:.7rem; padding:.2rem .55rem; border:1px solid var(--line); color: var(--moss-dim); border-radius:999px; letter-spacing:.05em; white-space:nowrap; }
+.tag.must { border-color: var(--rust); color: var(--rust); font-weight:500; }
+.tag.thrill { border-color:#8b6f47; color:#8b6f47; }
+.tag.relax { border-color:#5a7a5e; color:#4a6a4e; }
+.tag.photo { border-color: var(--moss); color: var(--moss); }
+.season-note { margin-top:.7rem; padding:.7rem .9rem; border-left:2px solid var(--gold); background: rgba(200,154,60,.08); font-size:.85rem; line-height:1.5; color: var(--rust-dim); border-radius: 0 4px 4px 0; }
+.season-note strong { color: var(--rust-dim); font-weight:600; font-family:'Noto Serif SC',serif; }
+.season-note::before { content:'◐ 8月底'; display:inline-block; font-size:.65rem; letter-spacing:.15em; color: var(--gold); font-weight:500; margin-right:.5rem; font-family:'Inter',sans-serif; vertical-align:.1em; }
+
+/* ─────── PROMINENT SEARCH BUTTONS ─────── */
+.search-row {
+  display:grid; grid-template-columns: 1fr 1fr;
+  gap:0; border-top: 1px solid var(--line-soft);
+}
+.search-btn {
+  padding: 1.2rem .6rem;
+  text-align:center; text-decoration:none;
+  font-size:.95rem; letter-spacing:.03em;
+  display:flex; align-items:center; justify-content:center;
+  gap:.5rem; transition: all .25s ease; font-weight:600;
+  position: relative;
+}
+.search-btn .icon { font-size: 1.3rem; line-height:1; }
+.search-btn .arrow { font-size:.9rem; transition: transform .25s ease; opacity:.7; }
+.search-btn:hover .arrow, .search-btn:active .arrow { transform: translateX(4px); opacity:1; }
+
+.search-btn.xhs {
+  color: var(--xhs);
+  background: linear-gradient(to bottom, transparent, rgba(255,36,66,.04));
+}
+.search-btn.xhs:hover, .search-btn.xhs:active {
+  background: linear-gradient(to bottom, rgba(255,36,66,.08), rgba(255,36,66,.12));
+}
+.search-btn.bing {
+  color: var(--moss);
+  border-left: 1px solid var(--line-soft);
+  background: linear-gradient(to bottom, transparent, rgba(31,58,50,.04));
+}
+.search-btn.bing:hover, .search-btn.bing:active {
+  background: linear-gradient(to bottom, rgba(31,58,50,.06), rgba(31,58,50,.1));
+}
+.search-btn small {
+  display:block; font-size:.65rem; letter-spacing:.15em; opacity:.65;
+  font-weight:500; margin-top:.1rem; text-transform:uppercase;
+}
+.search-btn .label-wrap { display:flex; flex-direction:column; align-items:flex-start; line-height:1.1; }
+.search-btn .label-wrap.center { align-items:center; }
+
+/* counter & modal */
+.counter { position:fixed; bottom:1rem; left:50%; transform: translateX(-50%) translateY(150%); background: var(--moss); color: var(--paper); padding:.7rem 1.4rem; border-radius:999px; font-size:.85rem; letter-spacing:.05em; box-shadow: 0 6px 20px rgba(31,58,50,.25); z-index:100; transition: transform .4s cubic-bezier(.34,1.56,.64,1); display:flex; align-items:center; gap:.7rem; }
+.counter.visible { transform: translateX(-50%) translateY(0); }
+.counter-num { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; font-weight:600; color: var(--gold); }
+.counter-show { background: var(--gold); border:none; color: var(--moss); font-size:.7rem; padding:.2rem .7rem; border-radius:999px; cursor:pointer; letter-spacing:.05em; font-weight:600; }
+.counter-clear { background:none; border:1px solid rgba(245,239,226,.3); color: var(--paper); font-size:.7rem; padding:.15rem .6rem; border-radius:999px; cursor:pointer; letter-spacing:.05em; }
+.modal { position:fixed; inset:0; background: rgba(31,58,50,.4); backdrop-filter: blur(4px); display:none; align-items:center; justify-content:center; z-index:200; padding:1rem; }
+.modal.visible { display:flex; }
+.modal-box { background: var(--paper); border-radius:8px; max-width:28rem; width:100%; padding:1.8rem 1.6rem; border: 1px solid var(--line); }
+.modal-box h3 { font-family:'Noto Serif SC',serif; color: var(--moss); font-size:1.2rem; margin-bottom:.6rem; font-weight:600; }
+.modal-box p { font-size:.85rem; color: var(--muted); margin-bottom:1rem; }
+.id-list { background: var(--bg); padding:1rem; border-radius:4px; border:1px solid var(--line-soft); font-family:'Fraunces',serif; font-size:1.4rem; letter-spacing:.1em; color: var(--moss); word-break:break-all; line-height:1.6; font-weight:500; text-align:center; margin-bottom:1rem; }
+.modal-actions { display:flex; gap:.6rem; }
+.modal-btn { flex:1; padding:.7rem; border:1px solid var(--line); background: var(--paper); color: var(--moss); border-radius:4px; font-size:.85rem; cursor:pointer; font-family:inherit; letter-spacing:.03em; }
+.modal-btn.primary { background: var(--moss); color: var(--paper); border-color: var(--moss); }
+
+footer { text-align:center; padding:3rem 1.5rem 2rem; margin-top:2rem; border-top:1px solid var(--line); max-width:50rem; margin-left:auto; margin-right:auto; }
+footer .footer-num { font-family:'Fraunces',serif; font-style:italic; font-size:3rem; color: var(--rust); font-weight:300; margin-bottom:.5rem; }
+footer h2 { font-family:'Noto Serif SC',serif; font-size:1.3rem; color: var(--moss); margin-bottom:1rem; font-weight:600; }
+footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24rem; margin: 0 auto 1rem; }
+.next-list { text-align:left; display:inline-block; margin:.5rem auto; padding:1.2rem 1.6rem; background: var(--paper); border:1px solid var(--line-soft); border-radius:4px; }
+.next-list li { list-style:none; font-size:.85rem; color: var(--moss-dim); padding:.3rem 0; display:flex; gap:.6rem; align-items:baseline; }
+.next-list li::before { content:'→'; color: var(--rust); font-weight:600; }
+
+@media (max-width: 480px) {
+  header { padding: 2.5rem 1.2rem 1.5rem; }
+  section { padding: 2rem 1.2rem .5rem; }
+  .card-main { padding: 1.2rem 1.2rem .8rem; }
+  .card-num { font-size:2rem; }
+  .card h3 { font-size:1.1rem; }
+  .banner { height: 90px; }
+  .banner-en { font-size: 1.8rem; }
+  .search-btn { padding: 1.1rem .5rem; font-size:.9rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">South Island · New Zealand · 国内版</div>
+  <h1 class="title">南岛景点 <em>清单</em></h1>
+  <div class="dateline">
+    <span>8 月 30 日 — 9 月 4 日</span>
+    <span class="dot">·</span>
+    <span>冬末春初</span>
+    <span class="dot">·</span>
+    <span>6 天 5 晚</span>
+  </div>
+  <p class="intro">每张卡片下方两个大按钮:<strong class="red">📕 小红书</strong>(唤起小红书 app 直达搜索页,需手机已装 app)和 <strong class="moss">🖼 Bing 图片</strong>(国内可直连,人人能用,看图片首选)。<br><br>感兴趣的卡片<strong>点一下选中</strong>,选完点底部"导出编号"→发我编号。</p>
+  <div class="legend">
+    <span class="legend-item must">必去招牌</span>
+    <span class="legend-item">普通推荐</span>
+    <span class="legend-item season">◐ 8月底特色</span>
+  </div>
+</header>
+
+<!-- ============ 01 LAKES ============ -->
+<section>
+  <div class="section-head"><span class="section-num">01</span><h2>湖泊与教堂</h2><span class="en">Lakes &amp; Chapel</span></div>
+
+  <div class="card" data-id="1">
+    <div class="banner cat-lake">
+      <div class="banner-en">Lake Tekapo</div>
+      <div class="banner-tag">星空 · 教堂 · 牛奶蓝</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">1</span>
+      <h3>蒂卡波湖 + 善良牧羊人教堂</h3>
+      <p class="en">Lake Tekapo &amp; Church of the Good Shepherd</p>
+      <p class="desc">牛奶蓝湖面、孤独的小石头教堂、国际暗夜保护区。整个南岛出片率最高的地方,白天看湖,晚上拍银河。</p>
+      <div class="tags"><span class="tag must">必去</span><span class="tag photo">摄影</span><span class="tag">湖泊</span></div>
+      <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>,空气干、夜长、湿度低。前提是住一晚不当天来回。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Tekapo+winter+snow+church" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="2">
+    <div class="banner cat-lake">
+      <div class="banner-en">Lake Pukaki</div>
+      <div class="banner-tag">冰川蓝 · 公路 · 雪山</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">2</span>
+      <h3>普卡基湖</h3>
+      <p class="en">Lake Pukaki</p>
+      <p class="desc">冰川蓝最浓的一面湖,远端正对库克山雪峰。整条 SH8 公路就是观景台,自驾路过随时停车。</p>
+      <div class="tags"><span class="tag must">必去</span><span class="tag photo">摄影</span><span class="tag">公路</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Pukaki+winter+Mount+Cook" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="3">
+    <div class="banner cat-lake">
+      <div class="banner-en">Lake Wakatipu</div>
+      <div class="banner-tag">皇后镇湖 · Z 字湖</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">3</span>
+      <h3>瓦卡蒂普湖(皇后镇湖)</h3>
+      <p class="en">Lake Wakatipu</p>
+      <p class="desc">皇后镇就建在湖边,Z 字形长湖,360 度被雪山包围。湖滨大道、晨雾、夕阳都美。</p>
+      <div class="tags"><span class="tag">湖泊</span><span class="tag relax">悠闲</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Wakatipu+Queenstown+winter" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="4">
+    <div class="banner cat-lake">
+      <div class="banner-en">That Wanaka Tree</div>
+      <div class="banner-tag">网红打卡 · 那棵树</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">4</span>
+      <h3>那棵树(瓦纳卡湖)</h3>
+      <p class="en">#ThatWanakaTree</p>
+      <p class="desc">长在湖中央的孤树,新西兰最被合影的树。日出黄昏最佳。本地人吐槽"网红打卡点",但确实出片。</p>
+      <div class="tags"><span class="tag photo">摄影</span><span class="tag">网红</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=That+Wanaka+Tree" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 MOUNTAINS ============ -->
+<section>
+  <div class="section-head"><span class="section-num">02</span><h2>雪山与冰川</h2><span class="en">Alps &amp; Glaciers</span></div>
+
+  <div class="card" data-id="5">
+    <div class="banner cat-mountain">
+      <div class="banner-en">Aoraki / Mt Cook</div>
+      <div class="banner-tag">最高峰 · 3724 米</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">5</span>
+      <h3>库克山 Aoraki</h3>
+      <p class="en">Aoraki / Mount Cook National Park</p>
+      <p class="desc">新西兰第一高峰,3724 米。园区里多条短步道(Kea Point、Sealy Tarns、Tasman Lake)。</p>
+      <div class="tags"><span class="tag must">必去</span><span class="tag">徒步</span></div>
+      <div class="season-note">8 月山顶<strong>积雪最厚最完整</strong>,远拍最像明信片。⚠️ 但<strong>胡克谷 Hooker Valley 步道关闭到 2026 春末</strong>(换吊桥),其他步道照常。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Aoraki+Mount+Cook+winter+snow" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="6">
+    <div class="banner cat-mountain">
+      <div class="banner-en">Tasman Glacier</div>
+      <div class="banner-tag">冰川 · 冰山湖</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">6</span>
+      <h3>塔斯曼冰川观景</h3>
+      <p class="en">Tasman Glacier View / Lake</p>
+      <p class="desc">15 分钟爬一段石阶,看冰川尾湖飘满冰山。可以加钱坐 Zodiac 快艇下到冰湖里近距离触摸冰山。</p>
+      <div class="tags"><span class="tag">冰川</span><span class="tag">徒步</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Tasman+Glacier+New+Zealand" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 FIORD ============ -->
+<section>
+  <div class="section-head"><span class="section-num">03</span><h2>峡湾</h2><span class="en">Fiordland</span></div>
+
+  <div class="card" data-id="7">
+    <div class="banner cat-fiord">
+      <div class="banner-en">Milford Sound</div>
+      <div class="banner-tag">第八奇观 · Mitre Peak</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">7</span>
+      <h3>米尔福德峡湾</h3>
+      <p class="en">Milford Sound / Piopiotahi</p>
+      <p class="desc">"世界第八奇观",千米海拔的悬崖直插海面。游船 1.5 小时,看瀑布、海豹、有时遇海豚。</p>
+      <div class="tags"><span class="tag must">必去</span><span class="tag">游船</span></div>
+      <div class="season-note">峡湾本来就是<strong>雨地</strong>,8 月底正好春雨开始增多——<strong>瀑布数量会从晴天的几条暴增到几百条</strong>,雨天反而更壮观,别因怕下雨放弃。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Milford+Sound+Mitre+Peak" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="8">
+    <div class="banner cat-fiord">
+      <div class="banner-en">Doubtful Sound</div>
+      <div class="banner-tag">神秘 · 过夜深度</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">8</span>
+      <h3>神奇峡湾(过夜深度)</h3>
+      <p class="en">Doubtful Sound</p>
+      <p class="desc">米尔福德的"高级版":更大、更野、几乎没人。需要过夜游船才能玩透,6 天行程偏紧但值得知道。</p>
+      <div class="tags"><span class="tag">小众</span><span class="tag">过夜</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Doubtful+Sound" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 TOWNS ============ -->
+<section>
+  <div class="section-head"><span class="section-num">04</span><h2>城镇风情</h2><span class="en">Towns &amp; Villages</span></div>
+
+  <div class="card" data-id="9">
+    <div class="banner cat-town">
+      <div class="banner-en">Queenstown</div>
+      <div class="banner-tag">大本营 · 探险之都</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">9</span>
+      <h3>皇后镇</h3>
+      <p class="en">Queenstown</p>
+      <p class="desc">南岛南部的旅游大本营,所有一日游从这里出发。湖边步道、餐厅、酒吧、Fergburger 网红汉堡都在镇中心。</p>
+      <div class="tags"><span class="tag must">必住</span><span class="tag">大本营</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Queenstown+New+Zealand+winter" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="10">
+    <div class="banner cat-town">
+      <div class="banner-en">Wānaka</div>
+      <div class="banner-tag">安静版皇后镇 · 宝藏</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">10</span>
+      <h3>瓦纳卡</h3>
+      <p class="en">Wānaka</p>
+      <p class="desc">皇后镇的安静版,没那么喧闹,湖更长、步道更野。本地人公认的"宝藏"。Roy's Peak 徒步 6 小时拍湖全景。</p>
+      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">徒步</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Wanaka+New+Zealand+winter" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="11">
+    <div class="banner cat-town">
+      <div class="banner-en">Arrowtown</div>
+      <div class="banner-tag">19 世纪淘金小镇</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">11</span>
+      <h3>箭镇</h3>
+      <p class="en">Arrowtown</p>
+      <p class="desc">皇后镇 20 分钟车程的 19 世纪淘金小镇。半日就够,主街拍照、糖果店、华人矿工遗址。</p>
+      <div class="tags"><span class="tag">小镇</span><span class="tag">历史</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%AE%AD%E9%95%87" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Arrowtown+New+Zealand" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="12">
+    <div class="banner cat-town">
+      <div class="banner-en">Christchurch</div>
+      <div class="banner-tag">枢纽城市 · 雅芳河</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">12</span>
+      <h3>基督城</h3>
+      <p class="en">Christchurch</p>
+      <p class="desc">南岛最大城市,2011 地震后重建,新建筑感强。雅芳河撑篙、纸板教堂、植物园。半天到一天够了。</p>
+      <div class="tags"><span class="tag">城市</span><span class="tag">枢纽</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Christchurch+New+Zealand" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 THRILL ============ -->
+<section>
+  <div class="section-head"><span class="section-num">05</span><h2>户外刺激</h2><span class="en">Adventure</span></div>
+
+  <div class="card" data-id="13">
+    <div class="banner cat-thrill">
+      <div class="banner-en">Skyline · Luge</div>
+      <div class="banner-tag">缆车 · 重力滑车</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">13</span>
+      <h3>Skyline 缆车 + Luge</h3>
+      <p class="en">Skyline Gondola &amp; Luge</p>
+      <p class="desc">皇后镇必玩。缆车上 Bob's Peak 看皇后镇全景,顶上有重力滑车 Luge(像旱地版雪橇),老少皆宜。</p>
+      <div class="tags"><span class="tag must">招牌</span><span class="tag">观景</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Skyline+Queenstown+Gondola+Luge" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="14">
+    <div class="banner cat-thrill">
+      <div class="banner-en">Bungy Jump</div>
+      <div class="banner-tag">蹦极发源地 · 43 米</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">14</span>
+      <h3>Kawarau 蹦极</h3>
+      <p class="en">AJ Hackett Kawarau Bridge Bungy</p>
+      <p class="desc">世界商业蹦极发源地,43 米。皇后镇到箭镇路上,不跳也可以来桥边看别人跳。</p>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">地标</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Kawarau+Bridge+Bungy+Jump" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="15">
+    <div class="banner cat-thrill">
+      <div class="banner-en">Shotover Jet</div>
+      <div class="banner-tag">85 km/h · 360° 回旋</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">15</span>
+      <h3>Shotover 喷射快艇</h3>
+      <p class="en">Shotover Jet</p>
+      <p class="desc">峡谷里 85 km/h 贴崖飞驰、360 度回旋。30 分钟体验,温暖天的最佳尖叫项目。</p>
+      <div class="tags"><span class="tag thrill">刺激</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=Shotover" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Shotover+Jet+Queenstown" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="16">
+    <div class="banner cat-thrill">
+      <div class="banner-en">Coronet · Cardrona</div>
+      <div class="banner-tag">滑雪 · 雪季尾声</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">16</span>
+      <h3>滑雪 Coronet Peak / Cardrona</h3>
+      <p class="en">Skiing &amp; Snowboarding</p>
+      <p class="desc">皇后镇周边三大雪场:Coronet Peak(离镇近)、The Remarkables(适合中级)、Cardrona(雪质最好,在瓦纳卡)。</p>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">冬季限定</span></div>
+      <div class="season-note">8 月底是<strong>南半球雪季尾声</strong>(雪季 6-9 月),雪量最厚已过去,但<strong>9 月上半月还在营业</strong>。9/4 之后赶紧关门,想滑就趁这次。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Coronet+Peak+Cardrona+ski" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="17">
+    <div class="banner cat-thrill">
+      <div class="banner-en">Heli Flight</div>
+      <div class="banner-tag">直升机 · 冰川降落</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">17</span>
+      <h3>库克山观光直升机</h3>
+      <p class="en">Mt Cook Heli Flight + Glacier Landing</p>
+      <p class="desc">直升机 25–55 分钟,飞越塔斯曼冰川并降落雪原上踩两脚。冬天能见度反而最好。NZD 400+。</p>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">奢华</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Mt+Cook+helicopter+glacier+landing" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 SLOW ============ -->
+<section>
+  <div class="section-head"><span class="section-num">06</span><h2>慢享体验</h2><span class="en">Slow Pleasures</span></div>
+
+  <div class="card" data-id="18">
+    <div class="banner cat-slow">
+      <div class="banner-en">TSS Earnslaw</div>
+      <div class="banner-tag">1912 蒸汽船 · 农场 BBQ</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">18</span>
+      <h3>古董蒸汽船 + 农场晚餐</h3>
+      <p class="en">TSS Earnslaw &amp; Walter Peak BBQ</p>
+      <p class="desc">1912 年的燃煤蒸汽船,游过湖到对岸 Walter Peak 农场吃 BBQ 自助、看牧羊犬表演。皇后镇最经典的体验之一。</p>
+      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">复古</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=TSS+Earnslaw+Walter+Peak" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="19">
+    <div class="banner cat-slow">
+      <div class="banner-en">Gibbston Valley</div>
+      <div class="banner-tag">黑皮诺 · 酒庄</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">19</span>
+      <h3>Gibbston Valley 酒庄</h3>
+      <p class="en">Gibbston Valley Winery</p>
+      <p class="desc">皇后镇 30 分钟车程,中央奥塔哥 Pinot Noir 产区。品酒+芝士拼盘+正餐组合。</p>
+      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">美食</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Gibbston+Valley+Winery" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="20">
+    <div class="banner cat-slow">
+      <div class="banner-en">Onsen Hot Pools</div>
+      <div class="banner-tag">山景温泉 · 私人池</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">20</span>
+      <h3>Onsen 山景温泉</h3>
+      <p class="en">Onsen Hot Pools</p>
+      <p class="desc">皇后镇山坡上的私人温泉房,推开木窗对着 Shotover 峡谷泡汤。需要提前 1 个月预约。</p>
+      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">情侣</span></div>
+      <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>,白雪山景配热水,体感反差最大。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=Onsen" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Onsen+Hot+Pools+Queenstown" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 SEASON ============ -->
+<section>
+  <div class="section-head"><span class="section-num">07</span><h2>这个季节的额外彩蛋</h2><span class="en">Late-Winter Specials</span></div>
+
+  <div class="card" data-id="21">
+    <div class="banner cat-season">
+      <div class="banner-en">Dark Sky · 银河</div>
+      <div class="banner-tag">Mt John 天文台</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">21</span>
+      <h3>蒂卡波银河观测</h3>
+      <p class="en">Dark Sky Stargazing Tour</p>
+      <p class="desc">Mt John 天文台官方导览,有专业天文望远镜。冬末是全年最佳期。NZD 150 左右,需要预订。</p>
+      <div class="tags"><span class="tag">夜晚</span><span class="tag photo">摄影</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Tekapo+Mt+John+stargazing+milky+way" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="22">
+    <div class="banner cat-season">
+      <div class="banner-en">Spring Lambs</div>
+      <div class="banner-tag">羔羊季 · 雪山 + 嫩绿</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">22</span>
+      <h3>春日羔羊 + 雪山绿草</h3>
+      <p class="en">Lambing Season &amp; Snow-Green Contrast</p>
+      <p class="desc">9 月初是新西兰小羊出生季,公路边随处看到刚出生的小羊羔。山顶仍有积雪、山下青草返绿——这种对比夏天看不到。</p>
+      <div class="tags"><span class="tag">季节限定</span><span class="tag photo">摄影</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=New+Zealand+spring+lambs+snow+mountains" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="23">
+    <div class="banner cat-season">
+      <div class="banner-en">Shoulder Season</div>
+      <div class="banner-tag">淡季 · 不挤 · 省钱</div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">23</span>
+      <h3>淡季福利</h3>
+      <p class="en">Shoulder Season Perks</p>
+      <p class="desc">8 月底-9 月初是新西兰旅游淡季的尾巴,游客比 12-2 月暑假/春节少很多。除滑雪相关外,住宿、租车便宜 20-30%,不用抢餐厅。</p>
+      <div class="tags"><span class="tag">省钱</span><span class="tag relax">不挤</span></div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+        <span class="icon">📕</span>
+        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=New+Zealand+south+island+winter+travel" target="_blank" rel="noopener">
+        <span class="icon">🖼</span>
+        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-num">？</div>
+  <h2>选完了 · 接下来怎么办</h2>
+  <p>把感兴趣的<strong style="color: var(--rust);">编号</strong>(可以连写)发给我。我会:</p>
+  <ul class="next-list">
+    <li>对照景点判断要不要租车 / 1 天包车 / 全程跟团</li>
+    <li>按你的选择排出 6 天每日行程</li>
+    <li>给奥克兰往返机票推荐</li>
+    <li>给两人 6 天总预算粗算</li>
+    <li>提示这个季节哪些景点要预订/有风险</li>
+  </ul>
+</footer>
+
+<div class="counter" id="counter">
+  已选 <span class="counter-num" id="countNum">0</span> 项
+  <button class="counter-show" onclick="showSelected()">导出编号</button>
+  <button class="counter-clear" onclick="clearAll()">清空</button>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="modal-box">
+    <h3>你的选择编号</h3>
+    <p>长按下面的编号复制,或者直接截图发给我:</p>
+    <div class="id-list" id="idList"></div>
+    <div class="modal-actions">
+      <button class="modal-btn" onclick="closeModal()">关闭</button>
+      <button class="modal-btn primary" onclick="copyIds()">复制</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const counter = document.getElementById('counter');
+  const countNum = document.getElementById('countNum');
+  let selected = new Set();
+
+  cards.forEach(card => {
+    const main = card.querySelector('.card-main');
+    const banner = card.querySelector('.banner');
+    const toggle = () => {
+      const id = card.dataset.id;
+      if (selected.has(id)) { selected.delete(id); card.classList.remove('selected'); }
+      else { selected.add(id); card.classList.add('selected'); }
+      updateCounter();
+    };
+    main.addEventListener('click', toggle);
+    if (banner) banner.addEventListener('click', toggle);
+  });
+
+  function updateCounter() {
+    countNum.textContent = selected.size;
+    if (selected.size > 0) counter.classList.add('visible');
+    else counter.classList.remove('visible');
+  }
+  function clearAll() {
+    selected.clear();
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+    updateCounter();
+  }
+  function showSelected() {
+    const sorted = [...selected].map(Number).sort((a,b)=>a-b);
+    document.getElementById('idList').textContent = sorted.join(' · ');
+    document.getElementById('modal').classList.add('visible');
+  }
+  function closeModal() { document.getElementById('modal').classList.remove('visible'); }
+
+  // ── 小红书 deep link: 优先唤起 app, 失败回退到小红书网页版 ──
+  document.querySelectorAll('.search-btn.xhs').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      // 从 baidu URL 提取关键词,去掉"小红书"和"攻略"修饰词
+      let keyword = '';
+      try {
+        const u = new URL(btn.href);
+        keyword = u.searchParams.get('keyword') || '';
+      } catch (_) { keyword = ''; }
+
+      const xhsApp = 'xhsdiscover://search/result?keyword=' + encodeURIComponent(keyword);
+      let switched = false;
+
+      const onHide = () => { if (document.hidden) switched = true; };
+      document.addEventListener('visibilitychange', onHide);
+
+      // 唤起 app
+      window.location.href = xhsApp;
+
+      // 1.5 秒未切换说明没装 app,跳小红书网页版
+      setTimeout(() => {
+        document.removeEventListener('visibilitychange', onHide);
+        if (!switched && !document.hidden) {
+          window.location.href = btn.href;
+        }
+      }, 1500);
+    });
+  });
+
+  function copyIds() {
+    const text = document.getElementById('idList').textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.modal-btn.primary');
+        const orig = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        setTimeout(() => btn.textContent = orig, 1500);
+      });
+    }
+  }
+</script>
+</body>
+</html>
