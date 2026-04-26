@@ -127,6 +127,63 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
   --banner-pattern: radial-gradient(circle at 30% 40%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 70% 60%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 50% 80%, rgba(255,255,255,.2) 1px, transparent 1.5px);
 }
 
+/* ── photo background variant (for cards with real photos) ── */
+.banner.has-photo {
+  height: auto;
+  aspect-ratio: 4/3;
+  max-height: 70vh;
+  background: none;
+  padding: 0;
+  cursor: default;
+}
+.banner.has-photo::before { display: none; }
+.banner-slider {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.banner-slider::-webkit-scrollbar { display: none; }
+.banner-slider .slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  background: linear-gradient(rgba(0,0,0,.15) 0%, rgba(0,0,0,.5) 100%), var(--photo-url) center/cover no-repeat;
+  position: relative;
+  cursor: pointer;
+}
+.banner-slider .slide-num {
+  position: absolute;
+  bottom: .65rem;
+  right: 1rem;
+  background: rgba(0,0,0,.4);
+  color: rgba(255,255,255,.9);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  z-index: 2;
+}
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+.banner.has-photo .banner-en { text-shadow: 0 2px 14px rgba(0,0,0,.7), 0 1px 4px rgba(0,0,0,.5); }
+.banner.has-photo .banner-tag { text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+
 .card-main { padding: 1.4rem 1.4rem 0.8rem; cursor: pointer; position:relative; }
 .card-num { font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:2.4rem; color: var(--rust); line-height:.9; display:inline-block; margin-bottom:.5rem; }
 .card-num::before { content:'№'; font-size:.6rem; vertical-align:super; font-style:normal; margin-right:.15rem; color: var(--muted); font-weight:500; letter-spacing:.1em; }
@@ -222,6 +279,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   .card-num { font-size:2rem; }
   .card h3 { font-size:1.1rem; }
   .banner { height: 90px; }
+  .banner.has-photo { height: auto; aspect-ratio: 4/3; max-height: 60vh; }
   .banner-en { font-size: 1.8rem; }
   .search-btn { padding: 1.1rem .5rem; font-size:.9rem; }
 }
@@ -260,9 +318,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">01</span><h2>湖泊与教堂</h2><span class="en">Lakes &amp; Chapel</span></div>
 
   <div class="card" data-id="1">
-    <div class="banner cat-lake">
-      <div class="banner-en">Lake Tekapo</div>
-      <div class="banner-tag">星空 · 教堂 · 牛奶蓝</div>
+    <div class="banner cat-lake has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1680373369195-569114c9f2a4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1662702056424-e780a7e2ea77?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Lake Tekapo</div>
+        <div class="banner-tag">星空 · 教堂 · 牛奶蓝</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">1</span>
@@ -274,7 +338,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>,空气干、夜长、湿度低。鲁冰花要 11-12 月才开,这季节看不到;但白雪山 + 牛奶蓝湖 + 小石头教堂的组合是这段时间专属。前提:住一晚不当天来回。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -288,9 +352,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="2">
-    <div class="banner cat-lake">
-      <div class="banner-en">Lake Pukaki</div>
-      <div class="banner-tag">冰川蓝 · 公路 · 雪山</div>
+    <div class="banner cat-lake has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1531804226530-70f8004aa44e?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1712789017612-b7cad179829c?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Lake Pukaki</div>
+        <div class="banner-tag">冰川蓝 · 公路 · 雪山</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">2</span>
@@ -303,7 +373,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">公路边随处可见<strong>绵羊</strong>群,有些羊驼牧场散落在附近。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -317,9 +387,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="3">
-    <div class="banner cat-lake">
-      <div class="banner-en">Lake Wakatipu</div>
-      <div class="banner-tag">皇后镇湖 · Z 字湖</div>
+    <div class="banner cat-lake has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729048236290-a09c09c72f7a?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729407813761-e6125c6d4804?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Lake Wakatipu</div>
+        <div class="banner-tag">皇后镇湖 · Z 字湖</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">3</span>
@@ -331,7 +407,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底湖边<strong>晨雾最重、雪山倒影最清</strong>。湖滨大道全年开放,皇后镇尚未进入夏季高峰,人少。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -345,9 +421,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="4">
-    <div class="banner cat-lake">
-      <div class="banner-en">That Wanaka Tree</div>
-      <div class="banner-tag">网红打卡 · 那棵树</div>
+    <div class="banner cat-lake has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1545308562-050974fb9ac4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1445294211564-3ca59d999abd?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">That Wanaka Tree</div>
+        <div class="banner-tag">网红打卡 · 那棵树</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">4</span>
@@ -360,7 +442,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">湖边偶有<strong>黑天鹅</strong>掠过,运气好同框。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -379,9 +461,16 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">02</span><h2>雪山与冰川</h2><span class="en">Alps &amp; Glaciers</span></div>
 
   <div class="card" data-id="5">
-    <div class="banner cat-mountain">
-      <div class="banner-en">Aoraki / Mt Cook</div>
-      <div class="banner-tag">最高峰 · 3724 米</div>
+    <div class="banner cat-mountain has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1753543405275-2e1fa458d342?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/3</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1753543405278-ec49d677cdf5?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/3</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1753543565704-41527a4dfcf6?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">3/3</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Aoraki / Mt Cook</div>
+        <div class="banner-tag">最高峰 · 3724 米</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">5</span>
@@ -394,7 +483,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">停车场和短步道入口常见<strong>Kea 高山鹦鹉</strong> — 全世界唯一会偷东西的鹦鹉,胆大爱拆背包 / 雨刮器 / 鞋带,看到别给吃的(违法)。远处雪坡偶可见<strong>Tahr 喜马拉雅塔尔羊</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -408,9 +497,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="6">
-    <div class="banner cat-mountain">
-      <div class="banner-en">Tasman Glacier</div>
-      <div class="banner-tag">冰川 · 冰山湖</div>
+    <div class="banner cat-mountain has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1626170610049-88eddaea7a44?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1706530878118-979212f4284a?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Tasman Glacier</div>
+        <div class="banner-tag">冰川 · 冰山湖</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">6</span>
@@ -423,7 +518,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">观景台和停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -442,9 +537,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">03</span><h2>峡湾</h2><span class="en">Fiordland</span></div>
 
   <div class="card" data-id="7">
-    <div class="banner cat-fiord">
-      <div class="banner-en">Milford Sound</div>
-      <div class="banner-tag">第八奇观 · Mitre Peak</div>
+    <div class="banner cat-fiord has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1660112360442-ec551cf15e4b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1688507438547-ae8b1e87a902?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Milford Sound</div>
+        <div class="banner-tag">第八奇观 · Mitre Peak</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">7</span>
@@ -457,7 +558,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">游船必见<strong>新西兰毛皮海豹</strong>(Seal Rock 礁石上一群);运气好遇<strong>宽吻海豚</strong>群跟船;9 月开始<strong>Fiordland Crested 凤头企鹅</strong>返回繁殖地,极偶尔在岸边见到。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -471,9 +572,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="8">
-    <div class="banner cat-fiord">
-      <div class="banner-en">Doubtful Sound</div>
-      <div class="banner-tag">神秘 · 过夜深度</div>
+    <div class="banner cat-fiord has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620987116875-ebbbc08d5426?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1535310114753-07e35719dfcf?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Doubtful Sound</div>
+        <div class="banner-tag">神秘 · 过夜深度</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">8</span>
@@ -486,7 +593,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note"><strong>瓶鼻海豚</strong>常见(全年驻地种群,9-10 月最活跃)、<strong>毛皮海豹</strong>必见、企鹅极罕见。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -505,9 +612,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">04</span><h2>城镇风情</h2><span class="en">Towns &amp; Villages</span></div>
 
   <div class="card" data-id="9">
-    <div class="banner cat-town">
-      <div class="banner-en">Queenstown</div>
-      <div class="banner-tag">大本营 · 探险之都</div>
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1547314283-befb6cc5cf29?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1600466403153-50193d187dde?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Queenstown</div>
+        <div class="banner-tag">大本营 · 探险之都</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">9</span>
@@ -519,7 +632,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底雪季尾声,镇上滑雪客和游客都不多,餐厅热闹但不挤。所有南部一日游(米尔福德 / 库克山 / 瓦纳卡)从皇后镇出发最方便。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -533,9 +646,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="10">
-    <div class="banner cat-town">
-      <div class="banner-en">Wānaka</div>
-      <div class="banner-tag">安静版皇后镇 · 宝藏</div>
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1590394360184-26846f8ae95e?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1589439717662-02fe320e4a74?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Wānaka</div>
+        <div class="banner-tag">安静版皇后镇 · 宝藏</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">10</span>
@@ -548,7 +667,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">Roy's Peak 步道沿线和瓦纳卡周边大量<strong>绵羊</strong>放牧。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -562,9 +681,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="11">
-    <div class="banner cat-town">
-      <div class="banner-en">Arrowtown</div>
-      <div class="banner-tag">19 世纪淘金小镇</div>
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1622438533757-c6cf63923bd4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1558958267-ec665c2dcb6b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Arrowtown</div>
+        <div class="banner-tag">19 世纪淘金小镇</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">11</span>
@@ -576,7 +701,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底是箭镇<strong>最普通的季节</strong>——秋色已过(5 月)、樱花未到(10 月底)。但糖果店、博物馆、华人矿工遗址全年开,半日就够,适合从皇后镇做半日插曲。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%AE%AD%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%AE%AD%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -590,9 +715,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="12">
-    <div class="banner cat-town">
-      <div class="banner-en">Christchurch</div>
-      <div class="banner-tag">枢纽城市 · 雅芳河</div>
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1576569847896-3cead09c0eec?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1634348407697-393e5b24a52d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Christchurch</div>
+        <div class="banner-tag">枢纽城市 · 雅芳河</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">12</span>
@@ -604,7 +735,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">9 月初<strong>雅芳河边水仙花开始开</strong>(春的前奏),雅芳河撑篙全年开放。从基督城开始 / 结束南岛行程是最常见的安排,机场航班最多。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -623,9 +754,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">05</span><h2>户外刺激</h2><span class="en">Adventure</span></div>
 
   <div class="card" data-id="13">
-    <div class="banner cat-thrill">
-      <div class="banner-en">Skyline · Luge</div>
-      <div class="banner-tag">缆车 · 重力滑车</div>
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1600476019922-fb69c71b0b53?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1600476018895-b66342d8592d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Skyline · Luge</div>
+        <div class="banner-tag">缆车 · 重力滑车</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">13</span>
@@ -638,7 +775,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">山顶偶有 <strong>Kea 鹦鹉</strong>停在缆车站附近。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -652,9 +789,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="14">
-    <div class="banner cat-thrill">
-      <div class="banner-en">Bungy Jump</div>
-      <div class="banner-tag">蹦极发源地 · 43 米</div>
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1593010932917-92bd21088dee?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1525208457530-d6b3372fd843?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Bungy Jump</div>
+        <div class="banner-tag">蹦极发源地 · 43 米</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">14</span>
@@ -666,7 +809,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底融雪开始,<strong>Kawarau 河水量大,跳下去能触水</strong>(可选项目)。不跳也可以来桥边看别人跳,免费。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -680,9 +823,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="15">
-    <div class="banner cat-thrill">
-      <div class="banner-en">Shotover Jet</div>
-      <div class="banner-tag">85 km/h · 360° 回旋</div>
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1715759777527-cf2337bfd22d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1715759777659-60919ecb77ba?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Shotover Jet</div>
+        <div class="banner-tag">85 km/h · 360° 回旋</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">15</span>
@@ -694,7 +843,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底融雪期 <strong>Shotover 河水量大、流速快</strong>,刺激感比夏天更足。30 min 体验,全年开,雨天照常。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Shotover" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Shotover%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -708,9 +857,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="16">
-    <div class="banner cat-thrill">
-      <div class="banner-en">Coronet · Cardrona</div>
-      <div class="banner-tag">滑雪 · 雪季尾声</div>
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1553638542-7120ed741871?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1562826542-449090f38c70?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Coronet · Cardrona</div>
+        <div class="banner-tag">滑雪 · 雪季尾声</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">16</span>
@@ -723,7 +878,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">山顶停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -737,9 +892,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="17">
-    <div class="banner cat-thrill">
-      <div class="banner-en">Heli Flight</div>
-      <div class="banner-tag">直升机 · 冰川降落</div>
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1495554698253-681539e9ea84?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1511049315096-4f3a74b92327?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Heli Flight</div>
+        <div class="banner-tag">直升机 · 冰川降落</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">17</span>
@@ -751,7 +912,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底<strong>能见度全年最好</strong>,雪原洁白完整。25-55 min,NZD 400-700+ / 人,看预算和路线。早上飞最稳(午后山区起风容易取消)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -770,9 +931,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">06</span><h2>慢享体验</h2><span class="en">Slow Pleasures</span></div>
 
   <div class="card" data-id="18">
-    <div class="banner cat-slow">
-      <div class="banner-en">TSS Earnslaw</div>
-      <div class="banner-tag">1912 蒸汽船 · 农场 BBQ</div>
+    <div class="banner cat-slow has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1689803743703-f41d7b02e6c6?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1682419075700-50f713436ae5?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">TSS Earnslaw</div>
+        <div class="banner-tag">1912 蒸汽船 · 农场 BBQ</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">18</span>
@@ -785,7 +952,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">这是全行程<strong>看动物最集中</strong>的体验:🐕‍🦺 <strong>牧羊犬表演</strong>(必看,博德牧羊犬赶羊群进圈)+ 🐂 <strong>苏格兰高地牛 Highland Cattle</strong>(毛茸茸,可摸)+ 🐑 喂羊 + 🦙 喂羊驼,儿童老人都喜欢。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -799,9 +966,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="19">
-    <div class="banner cat-slow">
-      <div class="banner-en">Gibbston Valley</div>
-      <div class="banner-tag">黑皮诺 · 酒庄</div>
+    <div class="banner cat-slow has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1610447921699-1f777c789637?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620888372059-7d693d995be2?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Gibbston Valley</div>
+        <div class="banner-tag">黑皮诺 · 酒庄</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">19</span>
@@ -813,7 +986,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底葡萄藤休眠(无叶无果),但<strong>品酒 + 芝士拼盘 + 正餐</strong>不影响,游客比夏季少很多。可以蹦极 + 酒庄一天连玩。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -827,9 +1000,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="20">
-    <div class="banner cat-slow">
-      <div class="banner-en">Onsen Hot Pools</div>
-      <div class="banner-tag">山景温泉 · 私人池</div>
+    <div class="banner cat-slow has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1655368973858-851fcadb6310?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1595353845553-1c2906ab3b29?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Onsen Hot Pools</div>
+        <div class="banner-tag">山景温泉 · 私人池</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">20</span>
@@ -841,7 +1020,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>——白雪山景配热水,体感反差最大。需要提前 1 个月预约,周末更紧。私人池 NZD 130+ / 小时 / 人。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Onsen" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Onsen%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -860,9 +1039,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="section-head"><span class="section-num">07</span><h2>这个季节的额外彩蛋</h2><span class="en">Late-Winter Specials</span></div>
 
   <div class="card" data-id="21">
-    <div class="banner cat-season">
-      <div class="banner-en">Dark Sky · 银河</div>
-      <div class="banner-tag">Mt John 天文台</div>
+    <div class="banner cat-season has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1724685203633-127d78e3fb57?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1698781724966-9f69445fa76b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Dark Sky · 银河</div>
+        <div class="banner-tag">Mt John 天文台</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">21</span>
@@ -874,7 +1059,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底是<strong>全年最佳观星期尾声</strong>,银河完整、空气干、夜长 12+ h。9 月底之后日长变短不利观星。NZD 150+ / 人,需提前预订(雨天会取消)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -888,9 +1073,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 
   <div class="card" data-id="22">
-    <div class="banner cat-season">
-      <div class="banner-en">Spring Lambs</div>
-      <div class="banner-tag">羔羊季 · 雪山 + 嫩绿</div>
+    <div class="banner cat-season has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1588164207355-8b81e4a8d351?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1516380970301-774614f26517?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Spring Lambs</div>
+        <div class="banner-tag">羔羊季 · 雪山 + 嫩绿</div>
+      </div>
     </div>
     <div class="card-main">
       <span class="card-num">22</span>
@@ -903,7 +1094,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="animal-note">🐑 <strong>新生羔羊</strong>数百万只,白色毛球绕母羊,自驾时随时停下拍。羊驼、苏格兰高地牛在 Walter Peak 农场也能看(见 №18)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -931,7 +1122,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="season-note">8 月底-9 月初是新西兰旅游<strong>淡季的尾巴</strong>,游客比 12-2 月暑假 / 春节少很多。除滑雪外,住宿、租车便宜 20-30%,不用抢餐厅。<strong>但</strong>米尔福德游船、Onsen 温泉、Mt John 观星仍要提前预订。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0%209%E6%9C%88" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
