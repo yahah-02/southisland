@@ -68,6 +68,16 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
 }
 @keyframes pop { from { transform:scale(0); } to { transform:scale(1); } }
 
+/* ── Priority levels (must / recommended / normal) ── */
+.card.priority-must { border: 2px solid var(--gold); box-shadow: 0 4px 16px rgba(200,154,60,.15); }
+.card.priority-must::after { content:'⭐ 必去'; position:absolute; top:0; left:0; background: var(--rust); color: var(--paper); font-family:'Noto Serif SC',serif; font-weight:600; font-size:.72rem; padding:.3rem .7rem; border-bottom-right-radius:8px; z-index:10; letter-spacing:.05em; pointer-events:none; }
+.card.priority-must .card-main { padding: 1.6rem 1.6rem 1rem; }
+.card.priority-must h3 { font-size:1.35rem; }
+.card.priority-normal .banner.has-photo { aspect-ratio: 16/9; max-height: 50vh; }
+.card.priority-normal .card-main { padding: 1.2rem 1.2rem .7rem; }
+.card.priority-normal h3 { font-size:1.05rem; }
+.card.priority-normal .card-num { font-size:1.8rem; }
+
 /* ── decorative banner per category ── */
 .banner {
   height: 100px; position:relative; overflow:hidden; cursor:pointer;
@@ -98,34 +108,13 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
 }
 
 /* category color variations */
-.cat-lake {
-  --banner-bg: linear-gradient(135deg, #4a8da8 0%, #6ab0c4 50%, #a8d0d8 100%);
-  --banner-pattern: repeating-linear-gradient(0deg, transparent 0, transparent 18px, rgba(255,255,255,.15) 18px, rgba(255,255,255,.15) 19px);
-}
-.cat-mountain {
-  --banner-bg: linear-gradient(135deg, #6b7a85 0%, #95a3ad 40%, #d4dde2 100%);
-  --banner-pattern: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.2) 40%, rgba(255,255,255,.2) 50%, transparent 50%, transparent 70%, rgba(255,255,255,.15) 70%, rgba(255,255,255,.15) 80%, transparent 80%);
-}
-.cat-fiord {
-  --banner-bg: linear-gradient(180deg, #2a4a52 0%, #3d6168 60%, #5a7a82 100%);
-  --banner-pattern: repeating-linear-gradient(90deg, transparent 0, transparent 20px, rgba(255,255,255,.08) 20px, rgba(255,255,255,.08) 21px);
-}
-.cat-town {
-  --banner-bg: linear-gradient(135deg, #b08560 0%, #c79c75 50%, #d8b894 100%);
-  --banner-pattern: repeating-linear-gradient(45deg, transparent 0, transparent 14px, rgba(255,255,255,.12) 14px, rgba(255,255,255,.12) 15px);
-}
-.cat-thrill {
-  --banner-bg: linear-gradient(135deg, #b85831 0%, #d4794d 50%, #e8a070 100%);
-  --banner-pattern: repeating-linear-gradient(-45deg, transparent 0, transparent 12px, rgba(255,255,255,.15) 12px, rgba(255,255,255,.15) 13px);
-}
-.cat-slow {
-  --banner-bg: linear-gradient(135deg, #5a7a5e 0%, #7a9882 50%, #aac0a4 100%);
-  --banner-pattern: radial-gradient(circle at 20% 50%, rgba(255,255,255,.18) 1.5px, transparent 2px), radial-gradient(circle at 60% 30%, rgba(255,255,255,.18) 1.5px, transparent 2px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.18) 1.5px, transparent 2px);
-}
-.cat-season {
-  --banner-bg: linear-gradient(135deg, #c89a3c 0%, #d8b264 50%, #e8c890 100%);
-  --banner-pattern: radial-gradient(circle at 30% 40%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 70% 60%, rgba(255,255,255,.2) 1px, transparent 1.5px), radial-gradient(circle at 50% 80%, rgba(255,255,255,.2) 1px, transparent 1.5px);
-}
+.cat-lake { --banner-bg: linear-gradient(135deg, #4a8da8 0%, #6ab0c4 50%, #a8d0d8 100%); }
+.cat-mountain { --banner-bg: linear-gradient(135deg, #6b7a85 0%, #95a3ad 40%, #d4dde2 100%); }
+.cat-fiord { --banner-bg: linear-gradient(180deg, #2a4a52 0%, #3d6168 60%, #5a7a82 100%); }
+.cat-town { --banner-bg: linear-gradient(135deg, #b08560 0%, #c79c75 50%, #d8b894 100%); }
+.cat-thrill { --banner-bg: linear-gradient(135deg, #b85831 0%, #d4794d 50%, #e8a070 100%); }
+.cat-slow { --banner-bg: linear-gradient(135deg, #5a7a5e 0%, #7a9882 50%, #aac0a4 100%); }
+.cat-season { --banner-bg: linear-gradient(135deg, #c89a3c 0%, #d8b264 50%, #e8c890 100%); }
 
 /* ── photo background variant (for cards with real photos) ── */
 .banner.has-photo {
@@ -157,54 +146,21 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
   cursor: pointer;
 }
 .banner-slider .slide-num {
-  position: absolute;
-  bottom: .65rem;
-  right: 1rem;
-  background: rgba(0,0,0,.4);
-  color: rgba(255,255,255,.9);
-  font-size: .65rem;
-  letter-spacing: .1em;
-  padding: .2rem .55rem;
-  border-radius: 999px;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 500;
+  position: absolute; bottom: .65rem; right: 1rem;
+  background: rgba(0,0,0,.4); color: rgba(255,255,255,.9);
+  font-size: .65rem; letter-spacing: .1em;
+  padding: .2rem .55rem; border-radius: 999px;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
   z-index: 2;
 }
 .banner-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 3;
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  pointer-events: none; z-index: 3;
 }
 .banner.has-photo .banner-en { text-shadow: 0 2px 14px rgba(0,0,0,.7), 0 1px 4px rgba(0,0,0,.5); }
 .banner.has-photo .banner-tag { text-shadow: 0 1px 6px rgba(0,0,0,.6); }
-
-/* ── Geographic overview section ── */
-.geo-overview { padding: 2rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
-.geo-grid { display:grid; grid-template-columns: 1fr 1.3fr; gap:1.4rem; margin-top:1rem; align-items:start; }
-.map-wrap { background: var(--paper); border:1px solid var(--line-soft); border-radius:8px; padding:.8rem; display:flex; justify-content:center; }
-.island-map { max-width:100%; height:auto; }
-.island-shape { fill: var(--bg); stroke: var(--moss-dim); stroke-width:1.5; stroke-linejoin:round; }
-.map-anchor circle { fill: var(--rust); stroke: var(--paper); stroke-width:1.5; }
-.map-anchor text { font-family:'Noto Serif SC',serif; font-size:11px; fill: var(--moss); font-weight:600; }
-.map-region-label { font-family:'Fraunces',serif; font-style:italic; font-size:9px; fill: var(--muted); letter-spacing:.15em; }
-.geo-list { display:flex; flex-direction:column; gap:.9rem; }
-.geo-region { border-left:2px solid var(--rust); padding-left:.85rem; }
-.geo-region .region-label { font-family:'Noto Serif SC',serif; font-weight:600; font-size:.92rem; color: var(--moss); margin-bottom:.25rem; }
-.geo-region .region-label strong { color: var(--rust); margin-right:.5rem; font-family:'Fraunces',serif; font-style:italic; font-size:.82rem; letter-spacing:.05em; font-weight:500; }
-.geo-region .region-desc { font-size:.75rem; color: var(--muted); margin-bottom:.4rem; line-height:1.5; }
-.geo-region .region-spots { font-size:.78rem; color: var(--moss-dim); line-height:1.8; }
-.geo-region .region-spots strong { color: var(--moss); font-weight:600; font-family:'Noto Serif SC',serif; font-size:.75rem; }
-.geo-region .region-spots em { font-style:italic; color: var(--rust); margin-left:.25rem; font-size:.72rem; }
-.geo-region .spot-id { display:inline-block; background: var(--bg); border:1px solid var(--line); padding:.02rem .35rem; border-radius:4px; font-family:'Fraunces',serif; font-style:italic; color: var(--rust); font-weight:600; font-size:.72rem; margin-right:.15rem; vertical-align:.05em; }
-.geo-note { font-size:.72rem; color: var(--muted); margin-top:1.4rem; padding:0 .3rem; line-height:1.6; font-style:italic; }
-.geo-note strong { color: var(--rust); font-weight:500; font-style:normal; }
-@media (max-width: 600px) { .geo-grid { grid-template-columns: 1fr; gap:1rem; } }
 
 .card-main { padding: 1.4rem 1.4rem 0.8rem; cursor: pointer; position:relative; }
 .card-num { font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:2.4rem; color: var(--rust); line-height:.9; display:inline-block; margin-bottom:.5rem; }
@@ -237,41 +193,16 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
 .animal-note::before { content:'🐾 动物'; display:inline-block; font-size:.65rem; letter-spacing:.15em; color: var(--moss-dim); font-weight:500; margin-right:.5rem; font-family:'Inter',sans-serif; vertical-align:.1em; }
 
 /* ─────── PROMINENT SEARCH BUTTONS ─────── */
-.search-row {
-  display:grid; grid-template-columns: 1fr 1fr;
-  gap:0; border-top: 1px solid var(--line-soft);
-}
-.search-btn {
-  padding: 1.2rem .6rem;
-  text-align:center; text-decoration:none;
-  font-size:.95rem; letter-spacing:.03em;
-  display:flex; align-items:center; justify-content:center;
-  gap:.5rem; transition: all .25s ease; font-weight:600;
-  position: relative;
-}
+.search-row { display:grid; grid-template-columns: 1fr 1fr; gap:0; border-top: 1px solid var(--line-soft); }
+.search-btn { padding: 1.2rem .6rem; text-align:center; text-decoration:none; font-size:.95rem; letter-spacing:.03em; display:flex; align-items:center; justify-content:center; gap:.5rem; transition: all .25s ease; font-weight:600; position: relative; }
 .search-btn .icon { font-size: 1.3rem; line-height:1; }
 .search-btn .arrow { font-size:.9rem; transition: transform .25s ease; opacity:.7; }
 .search-btn:hover .arrow, .search-btn:active .arrow { transform: translateX(4px); opacity:1; }
-
-.search-btn.xhs {
-  color: var(--xhs);
-  background: linear-gradient(to bottom, transparent, rgba(255,36,66,.04));
-}
-.search-btn.xhs:hover, .search-btn.xhs:active {
-  background: linear-gradient(to bottom, rgba(255,36,66,.08), rgba(255,36,66,.12));
-}
-.search-btn.bing {
-  color: var(--moss);
-  border-left: 1px solid var(--line-soft);
-  background: linear-gradient(to bottom, transparent, rgba(31,58,50,.04));
-}
-.search-btn.bing:hover, .search-btn.bing:active {
-  background: linear-gradient(to bottom, rgba(31,58,50,.06), rgba(31,58,50,.1));
-}
-.search-btn small {
-  display:block; font-size:.65rem; letter-spacing:.15em; opacity:.65;
-  font-weight:500; margin-top:.1rem; text-transform:uppercase;
-}
+.search-btn.xhs { color: var(--xhs); background: linear-gradient(to bottom, transparent, rgba(255,36,66,.04)); }
+.search-btn.xhs:hover, .search-btn.xhs:active { background: linear-gradient(to bottom, rgba(255,36,66,.08), rgba(255,36,66,.12)); }
+.search-btn.bing { color: var(--moss); border-left: 1px solid var(--line-soft); background: linear-gradient(to bottom, transparent, rgba(31,58,50,.04)); }
+.search-btn.bing:hover, .search-btn.bing:active { background: linear-gradient(to bottom, rgba(31,58,50,.06), rgba(31,58,50,.1)); }
+.search-btn small { display:block; font-size:.65rem; letter-spacing:.15em; opacity:.65; font-weight:500; margin-top:.1rem; text-transform:uppercase; }
 .search-btn .label-wrap { display:flex; flex-direction:column; align-items:flex-start; line-height:1.1; }
 .search-btn .label-wrap.center { align-items:center; }
 
@@ -326,11 +257,15 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
     <span>6 天 5 晚</span>
   </div>
   <p class="intro">
-    每张卡片包含 <strong>地理位置 / 8 月底特点 / 标签 / 看什么动物 / 大致预算 / 同区景点</strong>。卡片下方两个大按钮:<strong class="red">📕 小红书</strong>(搜索词已带 9 月时段)和 <strong class="moss">🖼 Bing 图片</strong>(国内直连)。
+    每张卡片包含 <strong>地理位置 / 8 月底特点 / 标签 / 动物 / 大致预算 / 同区景点</strong>。
+    <br><br>
+    <strong>分级</strong>:<span class="red">⭐ 必去</span>(金边大卡 · 小红书 + 常识公认招牌)· <strong>普通卡</strong>(推荐)· <strong>小卡</strong>(看兴趣加)。
+    <br><br>
+    <strong>排序</strong>:从北到南 — 基督城 → 蒂卡波 → 库克山 → 瓦纳卡 → 皇后镇 → 米尔福德。
     <br><br>
     <strong>淡季福利</strong>:8 月底-9 月初是淡季尾巴(暑假/春节没人,除滑雪外住宿+租车便宜 20-30%),但米尔福德游船 / Onsen 温泉 / Mt John 观星<strong>仍要提前预订</strong>。
     <br><br>
-    <strong>使用流程</strong>:先看上方<span class="red">大致位置图</span>了解景点关系 → 浏览卡片 <span class="red">点中选中</span> → 底部"导出编号" → <span class="moss">把编号发回对话框</span>,我会给:推荐路线 / 自驾&包车两套方案 / 奥克兰往返机场 / 6 天预算 / 住宿地区 / 每个景点的小红书攻略搜索关键词。
+    <strong>使用流程</strong>:浏览 → <span class="red">点中卡片选中</span> → 底部"导出编号" → <span class="moss">把编号发回对话框</span>,我会给:推荐路线 / 自驾&包车两套方案 / 奥克兰往返机场 / 6 天预算 / 住宿地区 / 每个景点的小红书攻略搜索关键词。
   </p>
   <div class="legend">
     <span class="legend-item must">必去招牌</span>
@@ -343,80 +278,48 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   </div>
 </header>
 
-<!-- ============ GEO OVERVIEW ============ -->
-<section class="geo-overview">
-  <div class="section-head"><span class="section-num">📍</span><h2>大致位置 · 北 → 南</h2><span class="en">Geographic Overview</span></div>
+<!-- ============ 01 北 · 基督城枢纽 ============ -->
+<section>
+  <div class="section-head"><span class="section-num">01</span><h2>北 · 东岸枢纽</h2><span class="en">North · Christchurch</span></div>
 
-  <div class="geo-grid">
-    <div class="map-wrap">
-      <svg viewBox="0 0 220 400" class="island-map" xmlns="http://www.w3.org/2000/svg">
-        <path class="island-shape" d="M 90,25 Q 105,20 115,30 L 130,38 L 142,55 Q 150,68 154,80 L 162,108 L 168,140 L 172,170 L 168,200 L 158,232 L 145,265 L 128,295 L 110,320 L 92,338 L 72,348 L 55,348 L 42,335 L 30,310 L 22,275 L 18,235 L 22,200 L 26,170 L 30,140 L 36,112 L 44,85 L 55,62 L 70,42 Q 80,30 90,25 Z" />
-        <text class="map-region-label" x="180" y="155" text-anchor="middle">EAST</text>
-        <text class="map-region-label" x="40" y="240" text-anchor="middle">FIORD</text>
-        <g class="map-anchor"><circle cx="155" cy="150" r="4"/><text x="161" y="153">基督城</text></g>
-        <g class="map-anchor"><circle cx="105" cy="195" r="4"/><text x="111" y="198">蒂卡波</text></g>
-        <g class="map-anchor"><circle cx="75" cy="195" r="4"/><text x="34" y="198" text-anchor="end">库克山</text></g>
-        <g class="map-anchor"><circle cx="80" cy="240" r="4"/><text x="86" y="243">瓦纳卡</text></g>
-        <g class="map-anchor"><circle cx="80" cy="280" r="4"/><text x="86" y="283">皇后镇</text></g>
-        <g class="map-anchor"><circle cx="42" cy="260" r="4"/><text x="38" y="263" text-anchor="end">米尔福德</text></g>
-      </svg>
+  <div class="card priority-normal" data-id="12">
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1576569847896-3cead09c0eec?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1634348407697-393e5b24a52d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Christchurch</div>
+        <div class="banner-tag">枢纽城市 · 雅芳河</div>
+      </div>
     </div>
-
-    <div class="geo-list">
-      <div class="geo-region">
-        <div class="region-label"><strong>1 · 北</strong>东岸枢纽</div>
-        <div class="region-desc">从奥克兰飞过来的入口 / 出口,所有南岛行程的起点或终点</div>
-        <div class="region-spots"><span class="spot-id">№12</span>基督城 CHC</div>
-      </div>
-
-      <div class="geo-region">
-        <div class="region-label"><strong>2 · 中</strong>Mackenzie 盆地 + 库克山</div>
-        <div class="region-desc">南岛核心雪山区,星空最清,公路最美,从基督城开车 3-4 h 到</div>
-        <div class="region-spots">
-          <span class="spot-id">№1</span>蒂卡波湖 + <span class="spot-id">№21</span>银河观测<em>(同地点)</em><br>
-          <span class="spot-id">№2</span>普卡基湖<br>
-          <span class="spot-id">№5</span>库克山 + <span class="spot-id">№6</span>塔斯曼冰川 + <span class="spot-id">№17</span>直升机<em>(同区域)</em>
-        </div>
-      </div>
-
-      <div class="geo-region">
-        <div class="region-label"><strong>3 · 中南</strong>瓦纳卡区</div>
-        <div class="region-desc">皇后镇北 70 km 的安静版,本地人公认的"宝藏"</div>
-        <div class="region-spots"><span class="spot-id">№10</span>瓦纳卡镇 + <span class="spot-id">№4</span>那棵树<em>(同区)</em></div>
-      </div>
-
-      <div class="geo-region">
-        <div class="region-label"><strong>4 · 南</strong>皇后镇 + 周边</div>
-        <div class="region-desc">所有南部一日游的大本营,机场 ZQN,国内航班枢纽。镇内 / 周边项目极多</div>
-        <div class="region-spots">
-          <strong>镇内 / 湖边:</strong> <span class="spot-id">№9</span>皇后镇 · <span class="spot-id">№3</span>瓦卡蒂普湖 · <span class="spot-id">№13</span>Skyline · <span class="spot-id">№18</span>TSS蒸汽船 · <span class="spot-id">№20</span>Onsen · <span class="spot-id">№15</span>Shotover<br>
-          <strong>东 20-30 km:</strong> <span class="spot-id">№11</span>箭镇 · <span class="spot-id">№14</span>蹦极 · <span class="spot-id">№19</span>酒庄<em>(一条路)</em><br>
-          <strong>滑雪场:</strong> <span class="spot-id">№16</span>(Coronet 25 km / Cardrona 在瓦纳卡)
-        </div>
-      </div>
-
-      <div class="geo-region">
-        <div class="region-label"><strong>5 · 西南</strong>Fiordland 峡湾</div>
-        <div class="region-desc">从皇后镇 4 h 开过去,世界第八奇观。一日游或过夜</div>
-        <div class="region-spots"><span class="spot-id">№7</span>米尔福德峡湾(经典) · <span class="spot-id">№8</span>神奇峡湾(过夜深度)<em>可二选一</em></div>
-      </div>
-
-      <div class="geo-region">
-        <div class="region-label"><strong>跨区</strong>季节限定</div>
-        <div class="region-desc">不是固定地点,自驾路上随处</div>
-        <div class="region-spots"><span class="spot-id">№22</span>春日羔羊(公路边)</div>
-      </div>
+    <div class="card-main">
+      <span class="card-num">12</span>
+      <h3>基督城</h3>
+      <p class="en">Christchurch</p>
+      <p class="desc">南岛最大城市,2011 地震后重建。雅芳河撑篙、纸板教堂、植物园。半天到一天够。</p>
+      <div class="location">南岛东岸 · 机场 CHC 是南岛主枢纽</div>
+      <div class="budget">城市免费 · 雅芳河撑篙 <strong>NZD 35</strong>/人 · 住宿 <strong>NZD 150-300</strong>/晚</div>
+      <div class="related">南岛主枢纽 · 从奥克兰飞过来航班最多 · 行程一头一尾建议在这</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag">城市 · 枢纽</span></div>
+      <div class="season-note">9 月初<strong>雅芳河边水仙花开始开</strong>(春的前奏)。从基督城开始 / 结束南岛行程是最常见的安排,机场航班最多。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Christchurch+New+Zealand" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
     </div>
   </div>
-
-  <p class="geo-note">⚠️ <strong>同地 / 同区</strong>:同一地点,选主景点就连带了 · <strong>一条路</strong>:车程半小时内,一天连游 · 详细预算见每张卡片底部</p>
 </section>
 
-<!-- ============ 01 LAKES ============ -->
+<!-- ============ 02 中 · Mackenzie 盆地 + 库克山 ============ -->
 <section>
-  <div class="section-head"><span class="section-num">01</span><h2>湖泊与教堂</h2><span class="en">Lakes &amp; Chapel</span></div>
+  <div class="section-head"><span class="section-num">02</span><h2>中 · Mackenzie 盆地 + 库克山</h2><span class="en">Central · Mackenzie &amp; Aoraki</span></div>
 
-  <div class="card" data-id="1">
+  <div class="card priority-must" data-id="1">
     <div class="banner cat-lake has-photo">
       <div class="banner-slider">
         <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1680373369195-569114c9f2a4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
@@ -432,22 +335,50 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <h3>蒂卡波湖 + 善良牧羊人教堂</h3>
       <p class="en">Lake Tekapo &amp; Church of the Good Shepherd</p>
       <p class="desc">牛奶蓝湖面、孤独的小石头教堂、国际暗夜保护区。整个南岛出片率最高的地方,白天看湖,晚上拍银河。</p>
-      <div class="location">南岛中部 SH8 公路边 · 距基督城 230 km / 3 h · 距皇后镇 270 km / 3.5 h</div>
-      <div class="budget">湖区免费;周边餐厅 <strong>NZD 50</strong>/人 · 住宿 <strong>NZD 200-400</strong>/晚</div>
-      <div class="related">同地 <span class="spot">№21</span> 银河观测(Tekapo 湖边山顶,一晚连看)</div>
+      <div class="location">SH8 公路 · 距基督城 230 km / 3 h · 距皇后镇 270 km / 3.5 h</div>
+      <div class="budget">湖区免费 · 周边餐厅 <strong>NZD 50</strong>/人 · 住宿 <strong>NZD 200-400</strong>/晚</div>
+      <div class="related">同地 <span class="spot">№21</span> 银河观测(山顶,一晚连看)</div>
       <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">湖 · 教堂</span></div>
-      <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>,空气干、夜长、湿度低。鲁冰花要 11-12 月才开,这季节看不到;但白雪山 + 牛奶蓝湖 + 小石头教堂的组合是这段时间专属。前提:住一晚不当天来回。</div>
+      <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>。鲁冰花要 11-12 月才开,这季节看不到;但白雪山 + 牛奶蓝湖 + 小石头教堂的组合是这段时间专属。前提:住一晚不当天来回。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Tekapo+winter+snow+church" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-must" data-id="21">
+    <div class="banner cat-season has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1724685203633-127d78e3fb57?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1698781724966-9f69445fa76b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Dark Sky · 银河</div>
+        <div class="banner-tag">Mt John 天文台</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">21</span>
+      <h3>蒂卡波银河观测</h3>
+      <p class="en">Dark Sky Stargazing Tour</p>
+      <p class="desc">Mt John 天文台官方导览,有专业天文望远镜。冬末是全年最佳期。需要预订。</p>
+      <div class="location">蒂卡波湖边 Mt John 山顶 · 导览车上山 · 通常深夜 9-12 点</div>
+      <div class="budget"><strong>NZD 150-180</strong>/人(含上山交通 + 望远镜导览) · 雨天会取消</div>
+      <div class="related">在 <span class="spot">№1</span> 蒂卡波湖边山顶(住 Tekapo 一晚就能看,白天看湖晚上观星)</div>
+      <div class="tags"><span class="tag must">必体验</span><span class="tag photo">出片</span><span class="tag">夜晚</span></div>
+      <div class="season-note">8 月底是<strong>全年最佳观星期尾声</strong>,银河完整、空气干、夜长 12+ h。9 月底之后日长变短不利观星。需提前预订。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Tekapo+Mt+John+stargazing+milky+way" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
@@ -470,104 +401,22 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <p class="desc">冰川蓝最浓的一面湖,远端正对库克山雪峰。整条 SH8 公路就是观景台,自驾路过随时停车。</p>
       <div class="location">SH8 公路 · 蒂卡波湖南 50 km · 库克山观景前哨</div>
       <div class="budget">公路边免费 · 自驾路过即可</div>
-      <div class="related">同区 <span class="spot">№5</span> 库克山 + <span class="spot">№6</span> 塔斯曼冰川 + <span class="spot">№17</span> 直升机(都在湖周围)</div>
+      <div class="related">同区 <span class="spot">№5</span> 库克山 + <span class="spot">№6</span> 塔斯曼冰川 + <span class="spot">№17</span> 直升机</div>
       <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">公路</span></div>
-      <div class="season-note">8 月底<strong>冰川蓝最浓 + 库克山顶积雪最完整</strong>,SH8 整条公路就是观景台。湖边路面清早可能结薄霜,自驾注意。</div>
+      <div class="season-note">8 月底<strong>冰川蓝最浓 + 库克山顶积雪最完整</strong>。湖边路面清早可能结薄霜,自驾注意。</div>
       <div class="animal-note">公路边随处可见<strong>绵羊</strong>群,有些羊驼牧场散落在附近。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Pukaki+winter+Mount+Cook" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
 
-  <div class="card" data-id="3">
-    <div class="banner cat-lake has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729048236290-a09c09c72f7a?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729407813761-e6125c6d4804?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Lake Wakatipu</div>
-        <div class="banner-tag">皇后镇湖 · Z 字湖</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">3</span>
-      <h3>瓦卡蒂普湖(皇后镇湖)</h3>
-      <p class="en">Lake Wakatipu</p>
-      <p class="desc">皇后镇就建在湖边,Z 字形长湖,360 度被雪山包围。湖滨大道、晨雾、夕阳都美。</p>
-      <div class="location">皇后镇就在湖东北岸 · Z 字形长湖,360° 雪山环抱</div>
-      <div class="budget">湖区免费 · 湖滨大道步行</div>
-      <div class="related">在 <span class="spot">№9</span> 皇后镇内 · <span class="spot">№18</span> TSS / <span class="spot">№13</span> Skyline 看的也是这片湖</div>
-      <div class="tags"><span class="tag nature">自然</span><span class="tag relax">悠闲</span><span class="tag photo">出片</span></div>
-      <div class="season-note">8 月底湖边<strong>晨雾最重、雪山倒影最清</strong>。湖滨大道全年开放,皇后镇尚未进入夏季高峰,人少。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Wakatipu+Queenstown+winter" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="4">
-    <div class="banner cat-lake has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1545308562-050974fb9ac4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1445294211564-3ca59d999abd?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">That Wanaka Tree</div>
-        <div class="banner-tag">网红打卡 · 那棵树</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">4</span>
-      <h3>那棵树(瓦纳卡湖)</h3>
-      <p class="en">#ThatWanakaTree</p>
-      <p class="desc">长在湖中央的孤树,新西兰最被合影的树。日出黄昏最佳。本地人吐槽"网红打卡点",但确实出片。</p>
-      <div class="location">瓦纳卡湖东岸 · 距瓦纳卡镇中心 1.5 km · 步行 / 单车可达</div>
-      <div class="budget">免费 · 单车租 <strong>NZD 30</strong>/天</div>
-      <div class="related">在 <span class="spot">№10</span> 瓦纳卡镇旁(同区,顺路打卡)</div>
-      <div class="tags"><span class="tag photo">出片</span><span class="tag">网红</span></div>
-      <div class="season-note">8 月底树叶已落(南半球冬季),但<strong>秃枝 + 雪山 + 晨雾</strong>的极简对比反而比夏天更出片。日出黄昏最佳。</div>
-      <div class="animal-note">湖边偶有<strong>黑天鹅</strong>掠过,运气好同框。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=That+Wanaka+Tree" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 02 MOUNTAINS ============ -->
-<section>
-  <div class="section-head"><span class="section-num">02</span><h2>雪山与冰川</h2><span class="en">Alps &amp; Glaciers</span></div>
-
-  <div class="card" data-id="5">
+  <div class="card priority-must" data-id="5">
     <div class="banner cat-mountain has-photo">
       <div class="banner-slider">
         <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1753543405275-2e1fa458d342?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/3</span></div>
@@ -586,21 +435,17 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <p class="desc">新西兰第一高峰,3724 米。园区里多条短步道(Kea Point、Sealy Tarns、Tasman Lake)。</p>
       <div class="location">从普卡基湖 SH80 北上 60 km · 终点 Mt Cook Village · 距皇后镇 300 km / 4 h</div>
       <div class="budget">国家公园 + 步道免费 · 住宿 Mt Cook Village <strong>NZD 250-500</strong>/晚(建议提前 1 月订)</div>
-      <div class="related">含 <span class="spot">№6</span> 塔斯曼冰川 · <span class="spot">№17</span> 直升机起降在 Village(一站玩透)</div>
+      <div class="related">含 <span class="spot">№6</span> 塔斯曼冰川 · <span class="spot">№17</span> 直升机起降在 Village</div>
       <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">徒步</span></div>
       <div class="season-note">8 月山顶<strong>积雪最厚最完整</strong>,远拍最像明信片。⚠️ <strong>胡克谷 Hooker Valley 步道关闭到 2026 春末</strong>(换吊桥),Kea Point / Tasman Lake 步道照常,Sealy Tarns 雪深可能需冰爪。</div>
-      <div class="animal-note">停车场和短步道入口常见<strong>Kea 高山鹦鹉</strong> — 全世界唯一会偷东西的鹦鹉,胆大爱拆背包 / 雨刮器 / 鞋带,看到别给吃的(违法)。远处雪坡偶可见<strong>Tahr 喜马拉雅塔尔羊</strong>。</div>
+      <div class="animal-note">停车场和短步道入口常见<strong>Kea 高山鹦鹉</strong> — 全世界唯一会偷东西的鹦鹉,胆大爱拆背包 / 雨刮器,看到别给吃的(违法)。远处雪坡偶可见<strong>Tahr 喜马拉雅塔尔羊</strong>。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Aoraki+Mount+Cook+winter+snow" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
@@ -608,8 +453,8 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   <div class="card" data-id="6">
     <div class="banner cat-mountain has-photo">
       <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1626170610049-88eddaea7a44?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1706530878118-979212f4284a?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1562106856-928cc668b63d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1673209377892-222ee5e19e7b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
       </div>
       <div class="banner-overlay">
         <div class="banner-en">Tasman Glacier</div>
@@ -625,139 +470,85 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="budget">观景台免费 · Zodiac 快艇 <strong>NZD 250</strong>/人(2.5 h,触摸冰山)</div>
       <div class="related">在 <span class="spot">№5</span> 库克山国家公园内(选了 №5 就顺道)</div>
       <div class="tags"><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">徒步 · 冰川</span></div>
-      <div class="season-note">冬末冰湖里<strong>冰山数量多、形状好</strong>,蓝白对比最强。Zodiac 快艇全年开,冬季水温低但能近距离触摸冰山。</div>
+      <div class="season-note">冬末冰湖里<strong>冰山数量多、形状好</strong>,蓝白对比最强。Zodiac 快艇全年开。</div>
       <div class="animal-note">观景台和停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Tasman+Glacier+New+Zealand" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-normal" data-id="17">
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1495554698253-681539e9ea84?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1511049315096-4f3a74b92327?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Heli Flight</div>
+        <div class="banner-tag">直升机 · 冰川降落</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">17</span>
+      <h3>库克山观光直升机</h3>
+      <p class="en">Mt Cook Heli Flight + Glacier Landing</p>
+      <p class="desc">直升机 25–55 分钟,飞越塔斯曼冰川并降落雪原上踩两脚。冬天能见度最好。</p>
+      <div class="location">起降点 Mt Cook Village 或 Lake Pukaki 旁(Glentanner 机场)</div>
+      <div class="budget"><strong>NZD 400-700+</strong>/人(25-55 min · 含冰川降落)</div>
+      <div class="related">起降在 <span class="spot">№5</span> 库克山 / <span class="spot">№2</span> 普卡基旁</div>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag photo">出片</span><span class="tag">奢华</span></div>
+      <div class="season-note">8 月底<strong>能见度全年最好</strong>。早上飞最稳(午后山区起风容易取消)。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Mt+Cook+helicopter+glacier+landing" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ 03 FIORD ============ -->
+<!-- ============ 03 中南 · 瓦纳卡 ============ -->
 <section>
-  <div class="section-head"><span class="section-num">03</span><h2>峡湾</h2><span class="en">Fiordland</span></div>
+  <div class="section-head"><span class="section-num">03</span><h2>中南 · 瓦纳卡</h2><span class="en">Wanaka</span></div>
 
-  <div class="card" data-id="7">
-    <div class="banner cat-fiord has-photo">
+  <div class="card priority-must" data-id="4">
+    <div class="banner cat-lake has-photo">
       <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1660112360442-ec551cf15e4b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1688507438547-ae8b1e87a902?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1585799845416-27985b4ea9a9?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1519710958430-67e411e2cf89?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
       </div>
       <div class="banner-overlay">
-        <div class="banner-en">Milford Sound</div>
-        <div class="banner-tag">第八奇观 · Mitre Peak</div>
+        <div class="banner-en">That Wanaka Tree</div>
+        <div class="banner-tag">网红打卡 · 那棵树</div>
       </div>
     </div>
     <div class="card-main">
-      <span class="card-num">7</span>
-      <h3>米尔福德峡湾</h3>
-      <p class="en">Milford Sound / Piopiotahi</p>
-      <p class="desc">"世界第八奇观",千米海拔的悬崖直插海面。游船 1.5 小时,看瀑布、海豹、有时遇海豚。</p>
-      <div class="location">南岛西南角 · 从皇后镇 290 km / 4 h(必经 Te Anau)· 一日游通常 12-14 h 起</div>
-      <div class="budget">巴士 + 游船一日游 <strong>NZD 230-300</strong>/人 · 自驾 + 游船 <strong>NZD 100-150</strong>/人(船 1.5 h)</div>
-      <div class="related">与 <span class="spot">№8</span> 神奇峡湾<em>二选一</em>(行程紧只能去一个)</div>
-      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">游船</span></div>
-      <div class="season-note">峡湾本来就是<strong>雨地</strong>,8 月底正好春雨开始增多——<strong>瀑布数量会从晴天的几条暴增到几百条</strong>,雨天反而更壮观,千万别因怕下雨放弃。米尔福德公路雪 / 冰季偶尔需要雪链,跟团游船最省心。</div>
-      <div class="animal-note">游船必见<strong>新西兰毛皮海豹</strong>(Seal Rock 礁石上一群);运气好遇<strong>宽吻海豚</strong>群跟船;9 月开始<strong>Fiordland Crested 凤头企鹅</strong>返回繁殖地,极偶尔在岸边见到。</div>
+      <span class="card-num">4</span>
+      <h3>那棵树(瓦纳卡湖)</h3>
+      <p class="en">#ThatWanakaTree</p>
+      <p class="desc">长在湖中央的孤树,新西兰最被合影的树。日出黄昏最佳。本地人吐槽"网红打卡点",但确实出片。</p>
+      <div class="location">瓦纳卡湖东岸 · 距瓦纳卡镇中心 1.5 km · 步行 / 单车可达</div>
+      <div class="budget">免费 · 单车租 <strong>NZD 30</strong>/天</div>
+      <div class="related">在 <span class="spot">№10</span> 瓦纳卡镇旁(同区,顺路打卡)</div>
+      <div class="tags"><span class="tag photo">出片</span><span class="tag">网红</span></div>
+      <div class="season-note">8 月底树叶已落,但<strong>秃枝 + 雪山 + 晨雾</strong>的极简对比反而比夏天更出片。日出黄昏最佳。</div>
+      <div class="animal-note">湖边偶有<strong>黑天鹅</strong>掠过,运气好同框。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Milford+Sound+Mitre+Peak" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="8">
-    <div class="banner cat-fiord has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620987116875-ebbbc08d5426?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1535310114753-07e35719dfcf?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Doubtful Sound</div>
-        <div class="banner-tag">神秘 · 过夜深度</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">8</span>
-      <h3>神奇峡湾(过夜深度)</h3>
-      <p class="en">Doubtful Sound</p>
-      <p class="desc">米尔福德的"高级版":更大、更野、几乎没人。需要过夜游船才能玩透,6 天行程偏紧但值得知道。</p>
-      <div class="location">从 Te Anau 蒂阿瑙南端,需<strong>湖船 + 大巴翻山 + 游船</strong>三段接驳 · 一日游 12 h 起,过夜 36 h+</div>
-      <div class="budget">一日游 <strong>NZD 380-450</strong>/人 · 过夜游船 <strong>NZD 600-900+</strong>/人</div>
-      <div class="related">与 <span class="spot">№7</span> 米尔福德<em>二选一</em>(贵且耗时,深度玩家选)</div>
-      <div class="tags"><span class="tag nature">自然</span><span class="tag animal">🐾 看动物</span><span class="tag">小众 · 过夜</span></div>
-      <div class="season-note">9 月初<strong>瓶鼻海豚活跃期开始</strong>,人比米尔福德少 90%。但 6 天行程里塞这个会很赶,通常和米尔福德二选一。</div>
-      <div class="animal-note"><strong>瓶鼻海豚</strong>常见(全年驻地种群,9-10 月最活跃)、<strong>毛皮海豹</strong>必见、企鹅极罕见。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Doubtful+Sound" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 04 TOWNS ============ -->
-<section>
-  <div class="section-head"><span class="section-num">04</span><h2>城镇风情</h2><span class="en">Towns &amp; Villages</span></div>
-
-  <div class="card" data-id="9">
-    <div class="banner cat-town has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1547314283-befb6cc5cf29?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1600466403153-50193d187dde?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Queenstown</div>
-        <div class="banner-tag">大本营 · 探险之都</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">9</span>
-      <h3>皇后镇</h3>
-      <p class="en">Queenstown</p>
-      <p class="desc">南岛南部的旅游大本营,所有一日游从这里出发。湖边步道、餐厅、酒吧、Fergburger 网红汉堡都在镇中心。</p>
-      <div class="location">南岛南部 · 瓦卡蒂普湖东北岸 · 机场 Queenstown Airport (ZQN) 距镇 8 km</div>
-      <div class="budget">镇本身免费 · 餐厅 <strong>NZD 30-60</strong>/人 · 住宿 <strong>NZD 250-500</strong>/晚(冬末淡季)</div>
-      <div class="related">含 <span class="spot">№3</span> 瓦卡蒂普湖 · <span class="spot">№13</span> Skyline · <span class="spot">№18</span> TSS · <span class="spot">№20</span> Onsen · <span class="spot">№15</span> Shotover(都在镇内 / 镇旁)</div>
-      <div class="tags"><span class="tag must">必住</span><span class="tag culture">人文</span><span class="tag">大本营</span></div>
-      <div class="season-note">8 月底雪季尾声,镇上滑雪客和游客都不多,餐厅热闹但不挤。所有南部一日游(米尔福德 / 库克山 / 瓦纳卡)从皇后镇出发最方便。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Queenstown+New+Zealand+winter" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=That+Wanaka+Tree" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
@@ -777,7 +568,7 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <span class="card-num">10</span>
       <h3>瓦纳卡</h3>
       <p class="en">Wānaka</p>
-      <p class="desc">皇后镇的安静版,没那么喧闹,湖更长、步道更野。本地人公认的"宝藏"。Roy's Peak 徒步 6 小时拍湖全景。</p>
+      <p class="desc">皇后镇的安静版,湖更长、步道更野。本地人公认的"宝藏"。Roy's Peak 徒步 6 小时拍湖全景。</p>
       <div class="location">皇后镇北 70 km / 1 h(走 Crown Range 风景公路 SH89,雪天可能关闭走 SH6 绕行 110 km)</div>
       <div class="budget">镇本身免费 · 住宿 <strong>NZD 200-400</strong>/晚(比皇后镇便宜)</div>
       <div class="related">含 <span class="spot">№4</span> 那棵树(湖边 1.5 km)· 离 <span class="spot">№16</span> Cardrona 滑雪 35 km</div>
@@ -787,94 +578,82 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Wanaka+New+Zealand+winter" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="11">
-    <div class="banner cat-town has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1622438533757-c6cf63923bd4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1558958267-ec665c2dcb6b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Arrowtown</div>
-        <div class="banner-tag">19 世纪淘金小镇</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">11</span>
-      <h3>箭镇</h3>
-      <p class="en">Arrowtown</p>
-      <p class="desc">皇后镇 20 分钟车程的 19 世纪淘金小镇。半日就够,主街拍照、糖果店、华人矿工遗址。</p>
-      <div class="location">皇后镇东北 20 km / 25 min · 在去 Cardrona / 瓦纳卡的路上</div>
-      <div class="budget">镇本身免费 · 博物馆 <strong>NZD 12</strong>/人 · 半日就够</div>
-      <div class="related">一条路 <span class="spot">№14</span> 蹦极 + <span class="spot">№19</span> 酒庄(从皇后镇出发可一天连游)</div>
-      <div class="tags"><span class="tag culture">人文</span><span class="tag">历史 · 小镇</span></div>
-      <div class="season-note">8 月底是箭镇<strong>最普通的季节</strong>——秋色已过(5 月)、樱花未到(10 月底)。但糖果店、博物馆、华人矿工遗址全年开,半日就够,适合从皇后镇做半日插曲。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%AE%AD%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Arrowtown+New+Zealand" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="12">
-    <div class="banner cat-town has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1576569847896-3cead09c0eec?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1634348407697-393e5b24a52d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Christchurch</div>
-        <div class="banner-tag">枢纽城市 · 雅芳河</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">12</span>
-      <h3>基督城</h3>
-      <p class="en">Christchurch</p>
-      <p class="desc">南岛最大城市,2011 地震后重建,新建筑感强。雅芳河撑篙、纸板教堂、植物园。半天到一天够了。</p>
-      <div class="location">南岛东岸 · 南岛最大城市 · 机场 Christchurch Airport (CHC) 是南岛主枢纽</div>
-      <div class="budget">城市免费 · 雅芳河撑篙 <strong>NZD 35</strong>/人 · 住宿 <strong>NZD 150-300</strong>/晚</div>
-      <div class="related">南岛主枢纽 · 从奥克兰飞过来航班最多 · 行程一头一尾建议安排在这</div>
-      <div class="tags"><span class="tag culture">人文</span><span class="tag">城市 · 枢纽</span></div>
-      <div class="season-note">9 月初<strong>雅芳河边水仙花开始开</strong>(春的前奏),雅芳河撑篙全年开放。从基督城开始 / 结束南岛行程是最常见的安排,机场航班最多。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Christchurch+New+Zealand" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ 05 THRILL ============ -->
+<!-- ============ 04 南 · 皇后镇 + 周边 ============ -->
 <section>
-  <div class="section-head"><span class="section-num">05</span><h2>户外刺激</h2><span class="en">Adventure</span></div>
+  <div class="section-head"><span class="section-num">04</span><h2>南 · 皇后镇 + 周边</h2><span class="en">South · Queenstown &amp; Around</span></div>
+
+  <div class="card priority-normal" data-id="3">
+    <div class="banner cat-lake has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729048236290-a09c09c72f7a?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1729407813761-e6125c6d4804?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Lake Wakatipu</div>
+        <div class="banner-tag">皇后镇湖 · Z 字湖</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">3</span>
+      <h3>瓦卡蒂普湖(皇后镇湖)</h3>
+      <p class="en">Lake Wakatipu</p>
+      <p class="desc">皇后镇就建在湖边,Z 字形长湖,360 度被雪山包围。湖滨大道、晨雾、夕阳都美。</p>
+      <div class="location">皇后镇就在湖东北岸 · 360° 雪山环抱</div>
+      <div class="budget">湖区免费 · 湖滨大道步行</div>
+      <div class="related">在 <span class="spot">№9</span> 皇后镇内 · <span class="spot">№18</span> TSS / <span class="spot">№13</span> Skyline 看的也是这片湖</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag relax">悠闲</span><span class="tag photo">出片</span></div>
+      <div class="season-note">8 月底湖边<strong>晨雾最重、雪山倒影最清</strong>。湖滨大道全年开放,人少。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Lake+Wakatipu+Queenstown+winter" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="9">
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1547314283-befb6cc5cf29?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1600466403153-50193d187dde?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Queenstown</div>
+        <div class="banner-tag">大本营 · 探险之都</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">9</span>
+      <h3>皇后镇</h3>
+      <p class="en">Queenstown</p>
+      <p class="desc">南岛南部的旅游大本营,所有一日游从这里出发。湖边步道、餐厅、酒吧、Fergburger 网红汉堡都在镇中心。</p>
+      <div class="location">瓦卡蒂普湖东北岸 · 机场 ZQN 距镇 8 km</div>
+      <div class="budget">镇本身免费 · 餐厅 <strong>NZD 30-60</strong>/人 · 住宿 <strong>NZD 250-500</strong>/晚</div>
+      <div class="related">含 <span class="spot">№3</span> 湖 · <span class="spot">№13</span> Skyline · <span class="spot">№18</span> TSS · <span class="spot">№20</span> Onsen · <span class="spot">№15</span> Shotover</div>
+      <div class="tags"><span class="tag must">必住</span><span class="tag culture">人文</span><span class="tag">大本营</span></div>
+      <div class="season-note">8 月底雪季尾声,镇上滑雪客和游客都不多。所有南部一日游(米尔福德 / 库克山 / 瓦纳卡)从皇后镇出发最方便。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Queenstown+New+Zealand+winter" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
 
   <div class="card" data-id="13">
     <div class="banner cat-thrill has-photo">
@@ -896,174 +675,20 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="budget">缆车 <strong>NZD 50</strong>/人 · 缆车 + Luge 5 圈套餐 <strong>NZD 100</strong>/人</div>
       <div class="related">在 <span class="spot">№9</span> 皇后镇镇中心(走路 5 min 就到)</div>
       <div class="tags"><span class="tag must">招牌</span><span class="tag photo">出片</span><span class="tag">观景</span></div>
-      <div class="season-note">8 月底山顶<strong>能见度全年最好</strong>,皇后镇全景 + 雪山一览无余。Luge 重力滑车全年开,落差大但安全。</div>
+      <div class="season-note">8 月底山顶<strong>能见度全年最好</strong>,皇后镇全景 + 雪山一览无余。Luge 重力滑车全年开。</div>
       <div class="animal-note">山顶偶有 <strong>Kea 鹦鹉</strong>停在缆车站附近。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Skyline+Queenstown+Gondola+Luge" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
 
-  <div class="card" data-id="14">
-    <div class="banner cat-thrill has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1593010932917-92bd21088dee?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1525208457530-d6b3372fd843?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Bungy Jump</div>
-        <div class="banner-tag">蹦极发源地 · 43 米</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">14</span>
-      <h3>Kawarau 蹦极</h3>
-      <p class="en">AJ Hackett Kawarau Bridge Bungy</p>
-      <p class="desc">世界商业蹦极发源地,43 米。皇后镇到箭镇路上,不跳也可以来桥边看别人跳。</p>
-      <div class="location">皇后镇东 23 km / 25 min · SH6 公路上,在去箭镇 / Gibbston 路上</div>
-      <div class="budget">跳一次 <strong>NZD 235</strong>/人 · 桥边围观免费</div>
-      <div class="related">一条路 <span class="spot">№11</span> 箭镇 + <span class="spot">№19</span> Gibbston 酒庄(连游一天)</div>
-      <div class="tags"><span class="tag thrill">刺激</span><span class="tag culture">人文</span><span class="tag">地标</span></div>
-      <div class="season-note">8 月底融雪开始,<strong>Kawarau 河水量大,跳下去能触水</strong>(可选项目)。不跳也可以来桥边看别人跳,免费。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Kawarau+Bridge+Bungy+Jump" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="15">
-    <div class="banner cat-thrill has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1715759777527-cf2337bfd22d?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1715759777659-60919ecb77ba?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Shotover Jet</div>
-        <div class="banner-tag">85 km/h · 360° 回旋</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">15</span>
-      <h3>Shotover 喷射快艇</h3>
-      <p class="en">Shotover Jet</p>
-      <p class="desc">峡谷里 85 km/h 贴崖飞驰、360 度回旋。30 分钟体验,温暖天的最佳尖叫项目。</p>
-      <div class="location">Shotover 河谷 · 皇后镇中心车程 15 min(可接送)</div>
-      <div class="budget"><strong>NZD 159</strong>/人(30 min 体验,镇中心免费接送)</div>
-      <div class="related">在 <span class="spot">№9</span> 皇后镇近郊(半日插曲,轻松)</div>
-      <div class="tags"><span class="tag thrill">刺激</span></div>
-      <div class="season-note">8 月底融雪期 <strong>Shotover 河水量大、流速快</strong>,刺激感比夏天更足。30 min 体验,全年开,雨天照常。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Shotover%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Shotover+Jet+Queenstown" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="16">
-    <div class="banner cat-thrill has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1553638542-7120ed741871?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1562826542-449090f38c70?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Coronet · Cardrona</div>
-        <div class="banner-tag">滑雪 · 雪季尾声</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">16</span>
-      <h3>滑雪 Coronet Peak / Cardrona</h3>
-      <p class="en">Skiing &amp; Snowboarding</p>
-      <p class="desc">皇后镇周边三大雪场:Coronet Peak(离镇近)、The Remarkables(适合中级)、Cardrona(雪质最好,在瓦纳卡)。</p>
-      <div class="location">Coronet Peak 距皇后镇 25 km · The Remarkables 距皇后镇 25 km · Cardrona 距瓦纳卡 35 km</div>
-      <div class="budget">雪票 <strong>NZD 150-200</strong>/天 + 租具 <strong>NZD 60-80</strong> · 总 <strong>220-280</strong>/人/天</div>
-      <div class="related">Coronet / Remarkables 在 <span class="spot">№9</span> 皇后镇 · Cardrona 在 <span class="spot">№10</span> 瓦纳卡</div>
-      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">冬季限定</span></div>
-      <div class="season-note">8 月底是<strong>南半球雪季尾声</strong>(雪季 6-9 月),雪量比 7-8 月初有所减少,但<strong>9 月上半月还在营业</strong>。9 月初 / 中旬陆续关门(Cardrona 通常最后,9 月中下旬关),想滑就趁这次。预算:雪票 + 租具 + 午餐 NZD 200+ / 人 / 天。</div>
-      <div class="animal-note">山顶停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Coronet+Peak+Cardrona+ski" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="17">
-    <div class="banner cat-thrill has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1495554698253-681539e9ea84?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1511049315096-4f3a74b92327?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Heli Flight</div>
-        <div class="banner-tag">直升机 · 冰川降落</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">17</span>
-      <h3>库克山观光直升机</h3>
-      <p class="en">Mt Cook Heli Flight + Glacier Landing</p>
-      <p class="desc">直升机 25–55 分钟,飞越塔斯曼冰川并降落雪原上踩两脚。冬天能见度反而最好。NZD 400+。</p>
-      <div class="location">起降点 Mt Cook Village 或 Lake Pukaki 旁(Glentanner 机场)</div>
-      <div class="budget"><strong>NZD 400-700+</strong>/人(25-55 min 不同套餐 · 含冰川降落)</div>
-      <div class="related">起降在 <span class="spot">№5</span> 库克山 / <span class="spot">№2</span> 普卡基旁(住 Mt Cook Village 顺道飞)</div>
-      <div class="tags"><span class="tag thrill">刺激</span><span class="tag photo">出片</span><span class="tag">奢华</span></div>
-      <div class="season-note">8 月底<strong>能见度全年最好</strong>,雪原洁白完整。25-55 min,NZD 400-700+ / 人,看预算和路线。早上飞最稳(午后山区起风容易取消)。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Mt+Cook+helicopter+glacier+landing" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 06 SLOW ============ -->
-<section>
-  <div class="section-head"><span class="section-num">06</span><h2>慢享体验</h2><span class="en">Slow Pleasures</span></div>
-
-  <div class="card" data-id="18">
+  <div class="card priority-must" data-id="18">
     <div class="banner cat-slow has-photo">
       <div class="banner-slider">
         <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1689803743703-f41d7b02e6c6?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
@@ -1080,58 +705,18 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <p class="en">TSS Earnslaw &amp; Walter Peak BBQ</p>
       <p class="desc">1912 年的燃煤蒸汽船,游过湖到对岸 Walter Peak 农场吃 BBQ 自助、看牧羊犬表演。皇后镇最经典的体验之一。</p>
       <div class="location">皇后镇湖边码头出发 · 过湖到对岸 Walter Peak 农场 · 来回 3.5 h(含 BBQ)</div>
-      <div class="budget">蒸汽船 + BBQ 晚餐 + 农场体验套餐 <strong>NZD 199-225</strong>/人</div>
+      <div class="budget">蒸汽船 + BBQ + 农场体验套餐 <strong>NZD 199-225</strong>/人</div>
       <div class="related">从 <span class="spot">№9</span> 皇后镇湖边码头出发(下午 / 黄昏班最美)</div>
       <div class="tags"><span class="tag must">招牌</span><span class="tag culture">人文</span><span class="tag relax">悠闲</span><span class="tag animal">🐾 看动物</span></div>
-      <div class="season-note">1912 年的燃煤蒸汽船全年开,冬末黄昏 5-6 点出发那班最美(湖边夕阳)。BBQ 自助晚餐 + 牧羊犬表演 + 农场动物互动是套餐式体验。</div>
+      <div class="season-note">1912 年的燃煤蒸汽船全年开,冬末黄昏 5-6 点出发那班最美。BBQ 自助晚餐 + 牧羊犬表演 + 农场动物互动是套餐式体验。</div>
       <div class="animal-note">这是全行程<strong>看动物最集中</strong>的体验:🐕‍🦺 <strong>牧羊犬表演</strong>(必看,博德牧羊犬赶羊群进圈)+ 🐂 <strong>苏格兰高地牛 Highland Cattle</strong>(毛茸茸,可摸)+ 🐑 喂羊 + 🦙 喂羊驼,儿童老人都喜欢。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=TSS+Earnslaw+Walter+Peak" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="card" data-id="19">
-    <div class="banner cat-slow has-photo">
-      <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1610447921699-1f777c789637?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620888372059-7d693d995be2?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
-      </div>
-      <div class="banner-overlay">
-        <div class="banner-en">Gibbston Valley</div>
-        <div class="banner-tag">黑皮诺 · 酒庄</div>
-      </div>
-    </div>
-    <div class="card-main">
-      <span class="card-num">19</span>
-      <h3>Gibbston Valley 酒庄</h3>
-      <p class="en">Gibbston Valley Winery</p>
-      <p class="desc">皇后镇 30 分钟车程,中央奥塔哥 Pinot Noir 产区。品酒+芝士拼盘+正餐组合。</p>
-      <div class="location">皇后镇东 30 km / 30 min · 过 Kawarau 蹦极桥几公里 · 中央奥塔哥黑皮诺核心产区</div>
-      <div class="budget">品酒 + 芝士拼盘 <strong>NZD 30-50</strong>/人 · 正餐 <strong>NZD 80+</strong>/人</div>
-      <div class="related">一条路 <span class="spot">№14</span> 蹦极 + <span class="spot">№11</span> 箭镇(从皇后镇出发一天连游)</div>
-      <div class="tags"><span class="tag culture">人文</span><span class="tag relax">悠闲</span><span class="tag">美食</span></div>
-      <div class="season-note">8 月底葡萄藤休眠(无叶无果),但<strong>品酒 + 芝士拼盘 + 正餐</strong>不影响,游客比夏季少很多。可以蹦极 + 酒庄一天连玩。</div>
-    </div>
-    <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Gibbston+Valley+Winery" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
@@ -1156,62 +741,254 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="budget">私人池 <strong>NZD 130-160</strong>/小时/人 · 提前 1 月预约</div>
       <div class="related">在 <span class="spot">№9</span> 皇后镇山坡(Arthurs Point,与 <span class="spot">№15</span> Shotover 同区)</div>
       <div class="tags"><span class="tag relax">悠闲</span><span class="tag photo">出片</span><span class="tag">情侣</span></div>
-      <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>——白雪山景配热水,体感反差最大。需要提前 1 个月预约,周末更紧。私人池 NZD 130+ / 小时 / 人。</div>
+      <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>——白雪山景配热水,体感反差最大。需要提前 1 个月预约。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Onsen%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Onsen+Hot+Pools+Queenstown" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-normal" data-id="15">
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1672563724673-23d7eaa82145?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1672563727032-1f97b2ae4a1f?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Shotover Jet</div>
+        <div class="banner-tag">85 km/h · 360° 回旋</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">15</span>
+      <h3>Shotover 喷射快艇</h3>
+      <p class="en">Shotover Jet</p>
+      <p class="desc">峡谷里 85 km/h 贴崖飞驰、360 度回旋。30 分钟体验。</p>
+      <div class="location">Shotover 河谷 · 皇后镇中心车程 15 min(可接送)</div>
+      <div class="budget"><strong>NZD 159</strong>/人(30 min 体验,镇中心免费接送)</div>
+      <div class="related">在 <span class="spot">№9</span> 皇后镇近郊(半日插曲,轻松)</div>
+      <div class="tags"><span class="tag thrill">刺激</span></div>
+      <div class="season-note">8 月底融雪期 <strong>Shotover 河水量大、流速快</strong>,刺激感比夏天更足。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Shotover%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Shotover+Jet+Queenstown" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" data-id="11">
+    <div class="banner cat-town has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1622438533757-c6cf63923bd4?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1558958267-ec665c2dcb6b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Arrowtown</div>
+        <div class="banner-tag">19 世纪淘金小镇</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">11</span>
+      <h3>箭镇</h3>
+      <p class="en">Arrowtown</p>
+      <p class="desc">皇后镇 20 分钟车程的 19 世纪淘金小镇。半日就够,主街拍照、糖果店、华人矿工遗址。</p>
+      <div class="location">皇后镇东北 20 km / 25 min · 在去 Cardrona / 瓦纳卡的路上</div>
+      <div class="budget">镇本身免费 · 博物馆 <strong>NZD 12</strong>/人 · 半日就够</div>
+      <div class="related">一条路 <span class="spot">№14</span> 蹦极 + <span class="spot">№19</span> 酒庄(从皇后镇出发可一天连游)</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag">历史 · 小镇</span></div>
+      <div class="season-note">8 月底是箭镇<strong>最普通的季节</strong>——秋色已过(5 月)、樱花未到(10 月底)。但糖果店、博物馆、华人矿工遗址全年开。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%AE%AD%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Arrowtown+New+Zealand" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-normal" data-id="14">
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1604951736469-df9fd1d0126e?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1708235900013-ef91f543966f?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Bungy Jump</div>
+        <div class="banner-tag">蹦极发源地 · 43 米</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">14</span>
+      <h3>Kawarau 蹦极</h3>
+      <p class="en">AJ Hackett Kawarau Bridge Bungy</p>
+      <p class="desc">世界商业蹦极发源地,43 米。皇后镇到箭镇路上,不跳也可以来桥边看别人跳。</p>
+      <div class="location">皇后镇东 23 km / 25 min · SH6 公路上,在去箭镇 / Gibbston 路上</div>
+      <div class="budget">跳一次 <strong>NZD 235</strong>/人 · 桥边围观免费</div>
+      <div class="related">一条路 <span class="spot">№11</span> 箭镇 + <span class="spot">№19</span> Gibbston 酒庄</div>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag culture">人文</span><span class="tag">地标</span></div>
+      <div class="season-note">8 月底融雪开始,<strong>Kawarau 河水量大,跳下去能触水</strong>(可选)。不跳也可以来桥边看别人跳,免费。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Kawarau+Bridge+Bungy+Jump" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-normal" data-id="19">
+    <div class="banner cat-slow has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1610447921699-1f777c789637?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620888372059-7d693d995be2?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Gibbston Valley</div>
+        <div class="banner-tag">黑皮诺 · 酒庄</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">19</span>
+      <h3>Gibbston Valley 酒庄</h3>
+      <p class="en">Gibbston Valley Winery</p>
+      <p class="desc">皇后镇 30 分钟车程,中央奥塔哥 Pinot Noir 产区。品酒+芝士拼盘+正餐组合。</p>
+      <div class="location">皇后镇东 30 km / 30 min · 过 Kawarau 蹦极桥几公里 · 中央奥塔哥黑皮诺核心产区</div>
+      <div class="budget">品酒 + 芝士拼盘 <strong>NZD 30-50</strong>/人 · 正餐 <strong>NZD 80+</strong>/人</div>
+      <div class="related">一条路 <span class="spot">№14</span> 蹦极 + <span class="spot">№11</span> 箭镇(从皇后镇出发一天连游)</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag relax">悠闲</span><span class="tag">美食</span></div>
+      <div class="season-note">8 月底葡萄藤休眠(无叶无果),但<strong>品酒 + 芝士拼盘 + 正餐</strong>不影响,游客比夏季少很多。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Gibbston+Valley+Winery" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card priority-normal" data-id="16">
+    <div class="banner cat-thrill has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1553638542-7120ed741871?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1562826542-449090f38c70?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Coronet · Cardrona</div>
+        <div class="banner-tag">滑雪 · 雪季尾声</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">16</span>
+      <h3>滑雪 Coronet Peak / Cardrona</h3>
+      <p class="en">Skiing &amp; Snowboarding</p>
+      <p class="desc">皇后镇周边三大雪场:Coronet Peak(离镇近)、The Remarkables(中级)、Cardrona(雪质最好,在瓦纳卡)。</p>
+      <div class="location">Coronet Peak 距皇后镇 25 km · The Remarkables 距皇后镇 25 km · Cardrona 距瓦纳卡 35 km</div>
+      <div class="budget">雪票 + 租具 <strong>NZD 220-280</strong>/人/天</div>
+      <div class="related">Coronet / Remarkables 在 <span class="spot">№9</span> 皇后镇 · Cardrona 在 <span class="spot">№10</span> 瓦纳卡</div>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">冬季限定</span></div>
+      <div class="season-note">8 月底是<strong>南半球雪季尾声</strong>,雪量比 7-8 月初有所减少,但<strong>9 月上半月还在营业</strong>。9 月初 / 中旬陆续关门。</div>
+      <div class="animal-note">山顶停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Coronet+Peak+Cardrona+ski" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ 07 SEASON ============ -->
+<!-- ============ 05 西南 · 峡湾 ============ -->
 <section>
-  <div class="section-head"><span class="section-num">07</span><h2>这个季节的额外彩蛋</h2><span class="en">Late-Winter Specials</span></div>
+  <div class="section-head"><span class="section-num">05</span><h2>西南 · 峡湾</h2><span class="en">Fiordland</span></div>
 
-  <div class="card" data-id="21">
-    <div class="banner cat-season has-photo">
+  <div class="card priority-must" data-id="7">
+    <div class="banner cat-fiord has-photo">
       <div class="banner-slider">
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1724685203633-127d78e3fb57?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
-        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1698781724966-9f69445fa76b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1660112360442-ec551cf15e4b?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1688507438547-ae8b1e87a902?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
       </div>
       <div class="banner-overlay">
-        <div class="banner-en">Dark Sky · 银河</div>
-        <div class="banner-tag">Mt John 天文台</div>
+        <div class="banner-en">Milford Sound</div>
+        <div class="banner-tag">第八奇观 · Mitre Peak</div>
       </div>
     </div>
     <div class="card-main">
-      <span class="card-num">21</span>
-      <h3>蒂卡波银河观测</h3>
-      <p class="en">Dark Sky Stargazing Tour</p>
-      <p class="desc">Mt John 天文台官方导览,有专业天文望远镜。冬末是全年最佳期。NZD 150 左右,需要预订。</p>
-      <div class="location">蒂卡波湖边 Mt John 山顶 · Tekapo 镇 + 导览车上山 · 通常深夜 9-12 点</div>
-      <div class="budget"><strong>NZD 150-180</strong>/人(含上山交通 + 专业天文望远镜导览) · 雨天会取消</div>
-      <div class="related">在 <span class="spot">№1</span> 蒂卡波湖边山顶(住 Tekapo 一晚就能看,白天看湖晚上观星)</div>
-      <div class="tags"><span class="tag must">必体验</span><span class="tag photo">出片</span><span class="tag">夜晚</span></div>
-      <div class="season-note">8 月底是<strong>全年最佳观星期尾声</strong>,银河完整、空气干、夜长 12+ h。9 月底之后日长变短不利观星。NZD 150+ / 人,需提前预订(雨天会取消)。</div>
+      <span class="card-num">7</span>
+      <h3>米尔福德峡湾</h3>
+      <p class="en">Milford Sound / Piopiotahi</p>
+      <p class="desc">"世界第八奇观",千米海拔的悬崖直插海面。游船 1.5 小时,看瀑布、海豹、有时遇海豚。</p>
+      <div class="location">南岛西南角 · 从皇后镇 290 km / 4 h(必经 Te Anau)· 一日游通常 12-14 h 起</div>
+      <div class="budget">巴士 + 游船一日游 <strong>NZD 230-300</strong>/人 · 自驾 + 游船 <strong>NZD 100-150</strong>/人</div>
+      <div class="related">与 <span class="spot">№8</span> 神奇峡湾<em>二选一</em>(行程紧只能去一个)</div>
+      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">游船</span></div>
+      <div class="season-note">峡湾本来就是<strong>雨地</strong>,8 月底正好春雨开始增多——<strong>瀑布数量会从晴天的几条暴增到几百条</strong>,雨天反而更壮观,千万别因怕下雨放弃。米尔福德公路雪 / 冰季偶尔需要雪链,跟团游船最省心。</div>
+      <div class="animal-note">游船必见<strong>新西兰毛皮海豹</strong>(Seal Rock 礁石上一群);运气好遇<strong>宽吻海豚</strong>群跟船;9 月开始<strong>Fiordland Crested 凤头企鹅</strong>返回繁殖地,极偶尔在岸边见到。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
-      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Tekapo+Mt+John+stargazing+milky+way" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Milford+Sound+Mitre+Peak" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
+
+  <div class="card priority-normal" data-id="8">
+    <div class="banner cat-fiord has-photo">
+      <div class="banner-slider">
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1620987116875-ebbbc08d5426?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">1/2</span></div>
+        <div class="slide" style="--photo-url:url('https://images.unsplash.com/photo-1535310114753-07e35719dfcf?w=1200&amp;q=80&amp;fm=jpg&amp;auto=format')"><span class="slide-num">2/2</span></div>
+      </div>
+      <div class="banner-overlay">
+        <div class="banner-en">Doubtful Sound</div>
+        <div class="banner-tag">神秘 · 过夜深度</div>
+      </div>
+    </div>
+    <div class="card-main">
+      <span class="card-num">8</span>
+      <h3>神奇峡湾(过夜深度)</h3>
+      <p class="en">Doubtful Sound</p>
+      <p class="desc">米尔福德的"高级版":更大、更野、几乎没人。需要过夜游船才能玩透。</p>
+      <div class="location">从 Te Anau 蒂阿瑙南端,需<strong>湖船 + 大巴翻山 + 游船</strong>三段接驳</div>
+      <div class="budget">一日游 <strong>NZD 380-450</strong>/人 · 过夜游船 <strong>NZD 600-900+</strong>/人</div>
+      <div class="related">与 <span class="spot">№7</span> 米尔福德<em>二选一</em>(贵且耗时,深度玩家选)</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag animal">🐾 看动物</span><span class="tag">小众 · 过夜</span></div>
+      <div class="season-note">9 月初<strong>瓶鼻海豚活跃期开始</strong>,人比米尔福德少 90%。但 6 天行程里塞这个会很赶。</div>
+      <div class="animal-note"><strong>瓶鼻海豚</strong>常见(全年驻地种群)、<strong>毛皮海豹</strong>必见、企鹅极罕见。</div>
+    </div>
+    <div class="search-row">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE%209%E6%9C%88" target="_blank" rel="noopener">
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
+      </a>
+      <a class="search-btn bing" href="https://cn.bing.com/images/search?q=Doubtful+Sound" target="_blank" rel="noopener">
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 跨区 · 季节限定 ============ -->
+<section>
+  <div class="section-head"><span class="section-num">06</span><h2>跨区 · 季节限定</h2><span class="en">Seasonal · Anywhere</span></div>
 
   <div class="card" data-id="22">
     <div class="banner cat-season has-photo">
@@ -1233,23 +1010,18 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       <div class="budget">完全免费 · 自驾路过随时停车拍</div>
       <div class="related">跨区景点(不固定地点)· 自驾从 <span class="spot">№1</span> 蒂卡波到 <span class="spot">№9</span> 皇后镇全程都能看</div>
       <div class="tags"><span class="tag must">必体验</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">季节限定</span></div>
-      <div class="season-note">9 月初是新西兰<strong>小羊出生季高峰</strong>,公路边随处看到刚出生的小羊羔。山顶仍有积雪、山下青草返绿——<strong>这种对比夏天看不到</strong>,是这趟行程的隐藏彩蛋。</div>
+      <div class="season-note">9 月初是新西兰<strong>小羊出生季高峰</strong>。山顶仍有积雪、山下青草返绿——<strong>这种对比夏天看不到</strong>,是这趟行程的隐藏彩蛋。</div>
       <div class="animal-note">🐑 <strong>新生羔羊</strong>数百万只,白色毛球绕母羊,自驾时随时停下拍。羊驼、苏格兰高地牛在 Walter Peak 农场也能看(见 №18)。</div>
     </div>
     <div class="search-row">
       <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0%209%E6%9C%88" target="_blank" rel="noopener">
-        <span class="icon">📕</span>
-        <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">📕</span><span class="label-wrap"><span>小红书</span><small>唤起 app</small></span><span class="arrow">→</span>
       </a>
       <a class="search-btn bing" href="https://cn.bing.com/images/search?q=New+Zealand+spring+lambs+snow+mountains" target="_blank" rel="noopener">
-        <span class="icon">🖼</span>
-        <span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span>
-        <span class="arrow">→</span>
+        <span class="icon">🖼</span><span class="label-wrap"><span>Bing 图片</span><small>看大图</small></span><span class="arrow">→</span>
       </a>
     </div>
   </div>
-
 </section>
 
 <footer>
@@ -1326,7 +1098,6 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
   document.querySelectorAll('.search-btn.xhs').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
-      // 从 baidu URL 提取关键词,去掉"小红书"和"攻略"修饰词
       let keyword = '';
       try {
         const u = new URL(btn.href);
@@ -1339,10 +1110,8 @@ footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; 
       const onHide = () => { if (document.hidden) switched = true; };
       document.addEventListener('visibilitychange', onHide);
 
-      // 唤起 app
       window.location.href = xhsApp;
 
-      // 1.5 秒未切换说明没装 app,跳小红书网页版
       setTimeout(() => {
         document.removeEventListener('visibilitychange', onHide);
         if (!switched && !document.hidden) {
