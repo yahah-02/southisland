@@ -39,6 +39,10 @@ h1.title em { font-family:'Fraunces',serif; font-style:italic; font-weight:300; 
 .legend-item { padding:.25rem .6rem; border:1px solid var(--line); border-radius:999px; color: var(--moss-dim); letter-spacing:.05em; }
 .legend-item.must { border-color: var(--rust); color: var(--rust); }
 .legend-item.season { border-color: var(--gold); color: var(--rust-dim); background: rgba(200,154,60,.08); }
+.legend-item.nature { border-color:#5a7a82; color:#4a6a72; }
+.legend-item.culture { border-color:#6b5b7a; color:#5b4a6a; }
+.legend-item.photo { border-color: var(--moss); color: var(--moss); }
+.legend-item.animal { border-color: var(--rust); color: var(--rust); background: rgba(184,88,49,.06); font-weight:500; }
 
 section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
 .section-head { display:flex; align-items:baseline; gap:.8rem; margin-bottom:1.6rem; padding-bottom:.8rem; border-bottom: 1px solid var(--line-soft); }
@@ -129,15 +133,23 @@ section { padding: 2.5rem 1.5rem 1rem; max-width:50rem; margin:0 auto; }
 .card h3 { font-family:'Noto Serif SC',serif; font-weight:600; font-size:1.2rem; color: var(--moss); margin-bottom:.15rem; line-height:1.3; padding-right:2.5rem; }
 .card .en { font-family:'Fraunces',serif; font-style:italic; font-size:.85rem; color: var(--muted); margin-bottom:.8rem; }
 .card .desc { font-size:.92rem; color: var(--ink); line-height:1.65; margin-bottom:.9rem; }
+.card .location { font-size:.78rem; color: var(--moss-dim); margin-bottom:.8rem; line-height:1.5; padding-left:1.2rem; position:relative; }
+.card .location::before { content:'◉'; position:absolute; left:0; top:.05rem; color: var(--rust); font-size:.7rem; }
 .tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.4rem; }
 .tag { font-size:.7rem; padding:.2rem .55rem; border:1px solid var(--line); color: var(--moss-dim); border-radius:999px; letter-spacing:.05em; white-space:nowrap; }
 .tag.must { border-color: var(--rust); color: var(--rust); font-weight:500; }
 .tag.thrill { border-color:#8b6f47; color:#8b6f47; }
 .tag.relax { border-color:#5a7a5e; color:#4a6a4e; }
 .tag.photo { border-color: var(--moss); color: var(--moss); }
+.tag.nature { border-color:#5a7a82; color:#4a6a72; }
+.tag.culture { border-color:#6b5b7a; color:#5b4a6a; }
+.tag.animal { border-color: var(--rust); color: var(--rust); background: rgba(184,88,49,.06); font-weight:500; }
 .season-note { margin-top:.7rem; padding:.7rem .9rem; border-left:2px solid var(--gold); background: rgba(200,154,60,.08); font-size:.85rem; line-height:1.5; color: var(--rust-dim); border-radius: 0 4px 4px 0; }
 .season-note strong { color: var(--rust-dim); font-weight:600; font-family:'Noto Serif SC',serif; }
 .season-note::before { content:'◐ 8月底'; display:inline-block; font-size:.65rem; letter-spacing:.15em; color: var(--gold); font-weight:500; margin-right:.5rem; font-family:'Inter',sans-serif; vertical-align:.1em; }
+.animal-note { margin-top:.7rem; padding:.7rem .9rem; border-left:2px solid var(--moss); background: rgba(31,58,50,.05); font-size:.85rem; line-height:1.5; color: var(--moss); border-radius: 0 4px 4px 0; }
+.animal-note strong { color: var(--moss); font-weight:600; font-family:'Noto Serif SC',serif; }
+.animal-note::before { content:'🐾 动物'; display:inline-block; font-size:.65rem; letter-spacing:.15em; color: var(--moss-dim); font-weight:500; margin-right:.5rem; font-family:'Inter',sans-serif; vertical-align:.1em; }
 
 /* ─────── PROMINENT SEARCH BUTTONS ─────── */
 .search-row {
@@ -201,6 +213,7 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
 .next-list { text-align:left; display:inline-block; margin:.5rem auto; padding:1.2rem 1.6rem; background: var(--paper); border:1px solid var(--line-soft); border-radius:4px; }
 .next-list li { list-style:none; font-size:.85rem; color: var(--moss-dim); padding:.3rem 0; display:flex; gap:.6rem; align-items:baseline; }
 .next-list li::before { content:'→'; color: var(--rust); font-weight:600; }
+footer .footer-note { font-size:.75rem; color: var(--muted); margin-top:1.2rem; max-width:30rem; margin-left:auto; margin-right:auto; font-style:italic; opacity:.85; line-height:1.6; padding:0 1rem; }
 
 @media (max-width: 480px) {
   header { padding: 2.5rem 1.2rem 1.5rem; }
@@ -226,11 +239,19 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
     <span class="dot">·</span>
     <span>6 天 5 晚</span>
   </div>
-  <p class="intro">每张卡片下方两个大按钮:<strong class="red">📕 小红书</strong>(唤起小红书 app 直达搜索页,需手机已装 app)和 <strong class="moss">🖼 Bing 图片</strong>(国内可直连,人人能用,看图片首选)。<br><br>感兴趣的卡片<strong>点一下选中</strong>,选完点底部"导出编号"→发我编号。</p>
+  <p class="intro">
+    每张卡片包含 <strong>地理位置 / 8 月底特点 / 标签 / 看什么动物</strong> 详情。卡片下方两个大按钮:<strong class="red">📕 小红书</strong>(直达搜索结果页,有 app 唤起 app,没 app 跳网页版)和 <strong class="moss">🖼 Bing 图片</strong>(国内可直连,看图首选)。
+    <br><br>
+    <strong>使用流程</strong>:浏览 → <span class="red">点中卡片选中</span> → 底部"导出编号" → <span class="moss">把编号发回对话框</span>,我会给:推荐路线 / 自驾&包车两套方案 / 奥克兰往返机场 / 6 天预算 / 住宿地区 / 每个景点的小红书攻略搜索关键词。
+  </p>
   <div class="legend">
     <span class="legend-item must">必去招牌</span>
     <span class="legend-item">普通推荐</span>
-    <span class="legend-item season">◐ 8月底特色</span>
+    <span class="legend-item nature">🌿 自然</span>
+    <span class="legend-item culture">🏛 人文</span>
+    <span class="legend-item photo">📸 出片</span>
+    <span class="legend-item animal">🐾 看动物</span>
+    <span class="legend-item season">◐ 8 月底特色</span>
   </div>
 </header>
 
@@ -248,11 +269,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>蒂卡波湖 + 善良牧羊人教堂</h3>
       <p class="en">Lake Tekapo &amp; Church of the Good Shepherd</p>
       <p class="desc">牛奶蓝湖面、孤独的小石头教堂、国际暗夜保护区。整个南岛出片率最高的地方,白天看湖,晚上拍银河。</p>
-      <div class="tags"><span class="tag must">必去</span><span class="tag photo">摄影</span><span class="tag">湖泊</span></div>
-      <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>,空气干、夜长、湿度低。前提是住一晚不当天来回。</div>
+      <div class="location">南岛中部 SH8 公路边 · 距基督城 230 km / 3 h · 距皇后镇 270 km / 3.5 h</div>
+      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">湖 · 教堂</span></div>
+      <div class="season-note">这趟最大彩蛋——<strong>南半球冬末是星空全年最清季</strong>,空气干、夜长、湿度低。鲁冰花要 11-12 月才开,这季节看不到;但白雪山 + 牛奶蓝湖 + 小石头教堂的组合是这段时间专属。前提:住一晚不当天来回。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2%E6%B9%96" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -275,10 +297,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>普卡基湖</h3>
       <p class="en">Lake Pukaki</p>
       <p class="desc">冰川蓝最浓的一面湖,远端正对库克山雪峰。整条 SH8 公路就是观景台,自驾路过随时停车。</p>
-      <div class="tags"><span class="tag must">必去</span><span class="tag photo">摄影</span><span class="tag">公路</span></div>
+      <div class="location">SH8 公路 · 蒂卡波湖南 50 km · 库克山观景前哨</div>
+      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">公路</span></div>
+      <div class="season-note">8 月底<strong>冰川蓝最浓 + 库克山顶积雪最完整</strong>,SH8 整条公路就是观景台。湖边路面清早可能结薄霜,自驾注意。</div>
+      <div class="animal-note">公路边随处可见<strong>绵羊</strong>群,有些羊驼牧场散落在附近。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%99%AE%E5%8D%A1%E5%9F%BA%E6%B9%96" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -301,10 +326,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>瓦卡蒂普湖(皇后镇湖)</h3>
       <p class="en">Lake Wakatipu</p>
       <p class="desc">皇后镇就建在湖边,Z 字形长湖,360 度被雪山包围。湖滨大道、晨雾、夕阳都美。</p>
-      <div class="tags"><span class="tag">湖泊</span><span class="tag relax">悠闲</span></div>
+      <div class="location">皇后镇就在湖东北岸 · Z 字形长湖,360° 雪山环抱</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag relax">悠闲</span><span class="tag photo">出片</span></div>
+      <div class="season-note">8 月底湖边<strong>晨雾最重、雪山倒影最清</strong>。湖滨大道全年开放,皇后镇尚未进入夏季高峰,人少。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E5%8D%A1%E8%92%82%E6%99%AE%E6%B9%96" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -327,10 +354,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>那棵树(瓦纳卡湖)</h3>
       <p class="en">#ThatWanakaTree</p>
       <p class="desc">长在湖中央的孤树,新西兰最被合影的树。日出黄昏最佳。本地人吐槽"网红打卡点",但确实出片。</p>
-      <div class="tags"><span class="tag photo">摄影</span><span class="tag">网红</span></div>
+      <div class="location">瓦纳卡湖东岸 · 距瓦纳卡镇中心 1.5 km · 步行 / 单车可达</div>
+      <div class="tags"><span class="tag photo">出片</span><span class="tag">网红</span></div>
+      <div class="season-note">8 月底树叶已落(南半球冬季),但<strong>秃枝 + 雪山 + 晨雾</strong>的极简对比反而比夏天更出片。日出黄昏最佳。</div>
+      <div class="animal-note">湖边偶有<strong>黑天鹅</strong>掠过,运气好同框。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1%E9%82%A3%E6%A3%B5%E6%A0%91" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -358,11 +388,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>库克山 Aoraki</h3>
       <p class="en">Aoraki / Mount Cook National Park</p>
       <p class="desc">新西兰第一高峰,3724 米。园区里多条短步道(Kea Point、Sealy Tarns、Tasman Lake)。</p>
-      <div class="tags"><span class="tag must">必去</span><span class="tag">徒步</span></div>
-      <div class="season-note">8 月山顶<strong>积雪最厚最完整</strong>,远拍最像明信片。⚠️ 但<strong>胡克谷 Hooker Valley 步道关闭到 2026 春末</strong>(换吊桥),其他步道照常。</div>
+      <div class="location">从普卡基湖 SH80 北上 60 km · 终点 Mt Cook Village · 距皇后镇 300 km / 4 h</div>
+      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">徒步</span></div>
+      <div class="season-note">8 月山顶<strong>积雪最厚最完整</strong>,远拍最像明信片。⚠️ <strong>胡克谷 Hooker Valley 步道关闭到 2026 春末</strong>(换吊桥),Kea Point / Tasman Lake 步道照常,Sealy Tarns 雪深可能需冰爪。</div>
+      <div class="animal-note">停车场和短步道入口常见<strong>Kea 高山鹦鹉</strong> — 全世界唯一会偷东西的鹦鹉,胆大爱拆背包 / 雨刮器 / 鞋带,看到别给吃的(违法)。远处雪坡偶可见<strong>Tahr 喜马拉雅塔尔羊</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -385,10 +417,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>塔斯曼冰川观景</h3>
       <p class="en">Tasman Glacier View / Lake</p>
       <p class="desc">15 分钟爬一段石阶,看冰川尾湖飘满冰山。可以加钱坐 Zodiac 快艇下到冰湖里近距离触摸冰山。</p>
-      <div class="tags"><span class="tag">冰川</span><span class="tag">徒步</span></div>
+      <div class="location">Mt Cook Village 旁 · 开车 8 km 到停车场 · 步行 15 min 上观景台</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag">徒步 · 冰川</span></div>
+      <div class="season-note">冬末冰湖里<strong>冰山数量多、形状好</strong>,蓝白对比最强。Zodiac 快艇全年开,冬季水温低但能近距离触摸冰山。</div>
+      <div class="animal-note">观景台和停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%A1%94%E6%96%AF%E6%9B%BC%E5%86%B0%E5%B7%9D" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -416,11 +451,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>米尔福德峡湾</h3>
       <p class="en">Milford Sound / Piopiotahi</p>
       <p class="desc">"世界第八奇观",千米海拔的悬崖直插海面。游船 1.5 小时,看瀑布、海豹、有时遇海豚。</p>
-      <div class="tags"><span class="tag must">必去</span><span class="tag">游船</span></div>
-      <div class="season-note">峡湾本来就是<strong>雨地</strong>,8 月底正好春雨开始增多——<strong>瀑布数量会从晴天的几条暴增到几百条</strong>,雨天反而更壮观,别因怕下雨放弃。</div>
+      <div class="location">南岛西南角 · 从皇后镇 290 km / 4 h(必经 Te Anau)· 一日游通常 12-14 h 起</div>
+      <div class="tags"><span class="tag must">必去</span><span class="tag nature">自然</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">游船</span></div>
+      <div class="season-note">峡湾本来就是<strong>雨地</strong>,8 月底正好春雨开始增多——<strong>瀑布数量会从晴天的几条暴增到几百条</strong>,雨天反而更壮观,千万别因怕下雨放弃。米尔福德公路雪 / 冰季偶尔需要雪链,跟团游船最省心。</div>
+      <div class="animal-note">游船必见<strong>新西兰毛皮海豹</strong>(Seal Rock 礁石上一群);运气好遇<strong>宽吻海豚</strong>群跟船;9 月开始<strong>Fiordland Crested 凤头企鹅</strong>返回繁殖地,极偶尔在岸边见到。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%B1%B3%E5%B0%94%E7%A6%8F%E5%BE%B7%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -443,10 +480,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>神奇峡湾(过夜深度)</h3>
       <p class="en">Doubtful Sound</p>
       <p class="desc">米尔福德的"高级版":更大、更野、几乎没人。需要过夜游船才能玩透,6 天行程偏紧但值得知道。</p>
-      <div class="tags"><span class="tag">小众</span><span class="tag">过夜</span></div>
+      <div class="location">从 Te Anau 蒂阿瑙南端,需<strong>湖船 + 大巴翻山 + 游船</strong>三段接驳 · 一日游 12 h 起,过夜 36 h+</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag animal">🐾 看动物</span><span class="tag">小众 · 过夜</span></div>
+      <div class="season-note">9 月初<strong>瓶鼻海豚活跃期开始</strong>,人比米尔福德少 90%。但 6 天行程里塞这个会很赶,通常和米尔福德二选一。</div>
+      <div class="animal-note"><strong>瓶鼻海豚</strong>常见(全年驻地种群,9-10 月最活跃)、<strong>毛皮海豹</strong>必见、企鹅极罕见。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%A5%9E%E5%A5%87%E5%B3%A1%E6%B9%BE" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -474,10 +514,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>皇后镇</h3>
       <p class="en">Queenstown</p>
       <p class="desc">南岛南部的旅游大本营,所有一日游从这里出发。湖边步道、餐厅、酒吧、Fergburger 网红汉堡都在镇中心。</p>
-      <div class="tags"><span class="tag must">必住</span><span class="tag">大本营</span></div>
+      <div class="location">南岛南部 · 瓦卡蒂普湖东北岸 · 机场 Queenstown Airport (ZQN) 距镇 8 km</div>
+      <div class="tags"><span class="tag must">必住</span><span class="tag culture">人文</span><span class="tag">大本营</span></div>
+      <div class="season-note">8 月底雪季尾声,镇上滑雪客和游客都不多,餐厅热闹但不挤。所有南部一日游(米尔福德 / 库克山 / 瓦纳卡)从皇后镇出发最方便。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -500,10 +542,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>瓦纳卡</h3>
       <p class="en">Wānaka</p>
       <p class="desc">皇后镇的安静版,没那么喧闹,湖更长、步道更野。本地人公认的"宝藏"。Roy's Peak 徒步 6 小时拍湖全景。</p>
-      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">徒步</span></div>
+      <div class="location">皇后镇北 70 km / 1 h(走 Crown Range 风景公路 SH89,雪天可能关闭走 SH6 绕行 110 km)</div>
+      <div class="tags"><span class="tag nature">自然</span><span class="tag relax">悠闲</span><span class="tag">徒步</span></div>
+      <div class="season-note">8 月底<strong>雪山 + 绿谷的对比开始浮现</strong>(山顶白、山下绿)。Roy's Peak 步道湿滑、上半段可能积雪,6 h 来回需注意装备。Crown Range 公路冬天偶尔需要雪链。</div>
+      <div class="animal-note">Roy's Peak 步道沿线和瓦纳卡周边大量<strong>绵羊</strong>放牧。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%93%A6%E7%BA%B3%E5%8D%A1" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -526,10 +571,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>箭镇</h3>
       <p class="en">Arrowtown</p>
       <p class="desc">皇后镇 20 分钟车程的 19 世纪淘金小镇。半日就够,主街拍照、糖果店、华人矿工遗址。</p>
-      <div class="tags"><span class="tag">小镇</span><span class="tag">历史</span></div>
+      <div class="location">皇后镇东北 20 km / 25 min · 在去 Cardrona / 瓦纳卡的路上</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag">历史 · 小镇</span></div>
+      <div class="season-note">8 月底是箭镇<strong>最普通的季节</strong>——秋色已过(5 月)、樱花未到(10 月底)。但糖果店、博物馆、华人矿工遗址全年开,半日就够,适合从皇后镇做半日插曲。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%AE%AD%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%AE%AD%E9%95%87" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -552,10 +599,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>基督城</h3>
       <p class="en">Christchurch</p>
       <p class="desc">南岛最大城市,2011 地震后重建,新建筑感强。雅芳河撑篙、纸板教堂、植物园。半天到一天够了。</p>
-      <div class="tags"><span class="tag">城市</span><span class="tag">枢纽</span></div>
+      <div class="location">南岛东岸 · 南岛最大城市 · 机场 Christchurch Airport (CHC) 是南岛主枢纽</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag">城市 · 枢纽</span></div>
+      <div class="season-note">9 月初<strong>雅芳河边水仙花开始开</strong>(春的前奏),雅芳河撑篙全年开放。从基督城开始 / 结束南岛行程是最常见的安排,机场航班最多。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%9F%BA%E7%9D%A3%E5%9F%8E" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -583,10 +632,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>Skyline 缆车 + Luge</h3>
       <p class="en">Skyline Gondola &amp; Luge</p>
       <p class="desc">皇后镇必玩。缆车上 Bob's Peak 看皇后镇全景,顶上有重力滑车 Luge(像旱地版雪橇),老少皆宜。</p>
-      <div class="tags"><span class="tag must">招牌</span><span class="tag">观景</span></div>
+      <div class="location">皇后镇镇中心湖边 · 缆车下站走路 5 min</div>
+      <div class="tags"><span class="tag must">招牌</span><span class="tag photo">出片</span><span class="tag">观景</span></div>
+      <div class="season-note">8 月底山顶<strong>能见度全年最好</strong>,皇后镇全景 + 雪山一览无余。Luge 重力滑车全年开,落差大但安全。</div>
+      <div class="animal-note">山顶偶有 <strong>Kea 鹦鹉</strong>停在缆车站附近。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -609,10 +661,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>Kawarau 蹦极</h3>
       <p class="en">AJ Hackett Kawarau Bridge Bungy</p>
       <p class="desc">世界商业蹦极发源地,43 米。皇后镇到箭镇路上,不跳也可以来桥边看别人跳。</p>
-      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">地标</span></div>
+      <div class="location">皇后镇东 23 km / 25 min · SH6 公路上,在去箭镇 / Gibbston 路上</div>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag culture">人文</span><span class="tag">地标</span></div>
+      <div class="season-note">8 月底融雪开始,<strong>Kawarau 河水量大,跳下去能触水</strong>(可选项目)。不跳也可以来桥边看别人跳,免费。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87%E8%B9%A6%E6%9E%81" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -635,10 +689,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>Shotover 喷射快艇</h3>
       <p class="en">Shotover Jet</p>
       <p class="desc">峡谷里 85 km/h 贴崖飞驰、360 度回旋。30 分钟体验,温暖天的最佳尖叫项目。</p>
+      <div class="location">Shotover 河谷 · 皇后镇中心车程 15 min(可接送)</div>
       <div class="tags"><span class="tag thrill">刺激</span></div>
+      <div class="season-note">8 月底融雪期 <strong>Shotover 河水量大、流速快</strong>,刺激感比夏天更足。30 min 体验,全年开,雨天照常。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=Shotover" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Shotover" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -661,11 +717,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>滑雪 Coronet Peak / Cardrona</h3>
       <p class="en">Skiing &amp; Snowboarding</p>
       <p class="desc">皇后镇周边三大雪场:Coronet Peak(离镇近)、The Remarkables(适合中级)、Cardrona(雪质最好,在瓦纳卡)。</p>
+      <div class="location">Coronet Peak 距皇后镇 25 km · The Remarkables 距皇后镇 25 km · Cardrona 距瓦纳卡 35 km</div>
       <div class="tags"><span class="tag thrill">刺激</span><span class="tag">冬季限定</span></div>
-      <div class="season-note">8 月底是<strong>南半球雪季尾声</strong>(雪季 6-9 月),雪量最厚已过去,但<strong>9 月上半月还在营业</strong>。9/4 之后赶紧关门,想滑就趁这次。</div>
+      <div class="season-note">8 月底是<strong>南半球雪季尾声</strong>(雪季 6-9 月),雪量比 7-8 月初有所减少,但<strong>9 月上半月还在营业</strong>。9 月初 / 中旬陆续关门(Cardrona 通常最后,9 月中下旬关),想滑就趁这次。预算:雪票 + 租具 + 午餐 NZD 200+ / 人 / 天。</div>
+      <div class="animal-note">山顶停车场偶有 <strong>Kea 鹦鹉</strong>。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -688,10 +746,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>库克山观光直升机</h3>
       <p class="en">Mt Cook Heli Flight + Glacier Landing</p>
       <p class="desc">直升机 25–55 分钟,飞越塔斯曼冰川并降落雪原上踩两脚。冬天能见度反而最好。NZD 400+。</p>
-      <div class="tags"><span class="tag thrill">刺激</span><span class="tag">奢华</span></div>
+      <div class="location">起降点 Mt Cook Village 或 Lake Pukaki 旁(Glentanner 机场)</div>
+      <div class="tags"><span class="tag thrill">刺激</span><span class="tag photo">出片</span><span class="tag">奢华</span></div>
+      <div class="season-note">8 月底<strong>能见度全年最好</strong>,雪原洁白完整。25-55 min,NZD 400-700+ / 人,看预算和路线。早上飞最稳(午后山区起风容易取消)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E5%BA%93%E5%85%8B%E5%B1%B1" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -719,10 +779,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>古董蒸汽船 + 农场晚餐</h3>
       <p class="en">TSS Earnslaw &amp; Walter Peak BBQ</p>
       <p class="desc">1912 年的燃煤蒸汽船,游过湖到对岸 Walter Peak 农场吃 BBQ 自助、看牧羊犬表演。皇后镇最经典的体验之一。</p>
-      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">复古</span></div>
+      <div class="location">皇后镇湖边码头出发 · 过湖到对岸 Walter Peak 农场 · 来回 3.5 h(含 BBQ)</div>
+      <div class="tags"><span class="tag must">招牌</span><span class="tag culture">人文</span><span class="tag relax">悠闲</span><span class="tag animal">🐾 看动物</span></div>
+      <div class="season-note">1912 年的燃煤蒸汽船全年开,冬末黄昏 5-6 点出发那班最美(湖边夕阳)。BBQ 自助晚餐 + 牧羊犬表演 + 农场动物互动是套餐式体验。</div>
+      <div class="animal-note">这是全行程<strong>看动物最集中</strong>的体验:🐕‍🦺 <strong>牧羊犬表演</strong>(必看,博德牧羊犬赶羊群进圈)+ 🐂 <strong>苏格兰高地牛 Highland Cattle</strong>(毛茸茸,可摸)+ 🐑 喂羊 + 🦙 喂羊驼,儿童老人都喜欢。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=TSS%E8%92%B8%E6%B1%BD%E8%88%B9" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -745,10 +808,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>Gibbston Valley 酒庄</h3>
       <p class="en">Gibbston Valley Winery</p>
       <p class="desc">皇后镇 30 分钟车程,中央奥塔哥 Pinot Noir 产区。品酒+芝士拼盘+正餐组合。</p>
-      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">美食</span></div>
+      <div class="location">皇后镇东 30 km / 30 min · 过 Kawarau 蹦极桥几公里 · 中央奥塔哥黑皮诺核心产区</div>
+      <div class="tags"><span class="tag culture">人文</span><span class="tag relax">悠闲</span><span class="tag">美食</span></div>
+      <div class="season-note">8 月底葡萄藤休眠(无叶无果),但<strong>品酒 + 芝士拼盘 + 正餐</strong>不影响,游客比夏季少很多。可以蹦极 + 酒庄一天连玩。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E7%9A%87%E5%90%8E%E9%95%87" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -771,11 +836,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>Onsen 山景温泉</h3>
       <p class="en">Onsen Hot Pools</p>
       <p class="desc">皇后镇山坡上的私人温泉房,推开木窗对着 Shotover 峡谷泡汤。需要提前 1 个月预约。</p>
-      <div class="tags"><span class="tag relax">悠闲</span><span class="tag">情侣</span></div>
-      <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>,白雪山景配热水,体感反差最大。</div>
+      <div class="location">皇后镇山坡 · Arthurs Point 区 · 镇中心车程 10 min(有接送)</div>
+      <div class="tags"><span class="tag relax">悠闲</span><span class="tag photo">出片</span><span class="tag">情侣</span></div>
+      <div class="season-note">冬末春初是<strong>泡温泉最爽的时候</strong>——白雪山景配热水,体感反差最大。需要提前 1 个月预约,周末更紧。私人池 NZD 130+ / 小时 / 人。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=Onsen" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=Onsen" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -803,10 +869,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>蒂卡波银河观测</h3>
       <p class="en">Dark Sky Stargazing Tour</p>
       <p class="desc">Mt John 天文台官方导览,有专业天文望远镜。冬末是全年最佳期。NZD 150 左右,需要预订。</p>
-      <div class="tags"><span class="tag">夜晚</span><span class="tag photo">摄影</span></div>
+      <div class="location">蒂卡波湖边 Mt John 山顶 · Tekapo 镇 + 导览车上山 · 通常深夜 9-12 点</div>
+      <div class="tags"><span class="tag must">必体验</span><span class="tag photo">出片</span><span class="tag">夜晚</span></div>
+      <div class="season-note">8 月底是<strong>全年最佳观星期尾声</strong>,银河完整、空气干、夜长 12+ h。9 月底之后日长变短不利观星。NZD 150+ / 人,需提前预订(雨天会取消)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E8%92%82%E5%8D%A1%E6%B3%A2" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -829,10 +897,13 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>春日羔羊 + 雪山绿草</h3>
       <p class="en">Lambing Season &amp; Snow-Green Contrast</p>
       <p class="desc">9 月初是新西兰小羊出生季,公路边随处看到刚出生的小羊羔。山顶仍有积雪、山下青草返绿——这种对比夏天看不到。</p>
-      <div class="tags"><span class="tag">季节限定</span><span class="tag photo">摄影</span></div>
+      <div class="location">南岛公路边随处 · 重点区域:Mackenzie 盆地(Tekapo-Pukaki)+ 瓦卡蒂普湖周边 + 瓦纳卡周边</div>
+      <div class="tags"><span class="tag must">必体验</span><span class="tag photo">出片</span><span class="tag animal">🐾 看动物</span><span class="tag">季节限定</span></div>
+      <div class="season-note">9 月初是新西兰<strong>小羊出生季高峰</strong>,公路边随处看到刚出生的小羊羔。山顶仍有积雪、山下青草返绿——<strong>这种对比夏天看不到</strong>,是这趟行程的隐藏彩蛋。</div>
+      <div class="animal-note">🐑 <strong>新生羔羊</strong>数百万只,白色毛球绕母羊,自驾时随时停下拍。羊驼、苏格兰高地牛在 Walter Peak 农场也能看(见 №18)。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -855,10 +926,12 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
       <h3>淡季福利</h3>
       <p class="en">Shoulder Season Perks</p>
       <p class="desc">8 月底-9 月初是新西兰旅游淡季的尾巴,游客比 12-2 月暑假/春节少很多。除滑雪相关外,住宿、租车便宜 20-30%,不用抢餐厅。</p>
+      <div class="location">全岛通用 · 不是单独景点,是这段时间的整体福利</div>
       <div class="tags"><span class="tag">省钱</span><span class="tag relax">不挤</span></div>
+      <div class="season-note">8 月底-9 月初是新西兰旅游<strong>淡季的尾巴</strong>,游客比 12-2 月暑假 / 春节少很多。除滑雪外,住宿、租车便宜 20-30%,不用抢餐厅。<strong>但</strong>米尔福德游船、Onsen 温泉、Mt John 观星仍要提前预订。</div>
     </div>
     <div class="search-row">
-      <a class="search-btn xhs" href="xhsdiscover://search/result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
+      <a class="search-btn xhs" href="https://www.xiaohongshu.com/search_result?keyword=%E6%96%B0%E8%A5%BF%E5%85%B0" target="_blank" rel="noopener">
         <span class="icon">📕</span>
         <span class="label-wrap"><span>小红书</span><small>唤起 app</small></span>
         <span class="arrow">→</span>
@@ -874,15 +947,18 @@ footer p { color: var(--muted); font-size:.9rem; line-height:1.7; max-width:24re
 
 <footer>
   <div class="footer-num">？</div>
-  <h2>选完了 · 接下来怎么办</h2>
-  <p>把感兴趣的<strong style="color: var(--rust);">编号</strong>(可以连写)发给我。我会:</p>
+  <h2>选完后 · 把编号发到对话框</h2>
+  <p>把感兴趣的<strong style="color: var(--rust);">编号</strong>(可以连写,比如 1·2·5·7·9·13·18·22)复制下来,粘到对话框发给 Claude。会得到:</p>
   <ul class="next-list">
-    <li>对照景点判断要不要租车 / 1 天包车 / 全程跟团</li>
-    <li>按你的选择排出 6 天每日行程</li>
-    <li>给奥克兰往返机票推荐</li>
-    <li>给两人 6 天总预算粗算</li>
-    <li>提示这个季节哪些景点要预订/有风险</li>
+    <li>对照景点的地理位置,排出 8.29-9.4 每日行程(9.4 白天回奥克兰)</li>
+    <li>奥克兰往返机场建议:基督城 CHC / 皇后镇 ZQN / 但尼丁 DUD,哪个更顺</li>
+    <li>两套方案:<strong>自驾</strong>(自由灵活)和 <strong>不自驾</strong>(包车 / 跟团组合,部分难走路段必须找包车)</li>
+    <li>两人 6 天总预算粗算(机票 + 住宿 + 餐饮 + 包车 / 租车 + 门票)</li>
+    <li>住宿地区建议:几晚 Tekapo / 几晚 Mt Cook / 几晚皇后镇 / 几晚 Te Anau...</li>
+    <li>每个景点对应的<strong>小红书攻略搜索关键词</strong>(精准词,你自己搜真实博主帖子)</li>
+    <li>这季节哪些景点要提前预订(米尔福德游船 / Onsen / Mt John 观星 / 包车等)</li>
   </ul>
+  <p class="footer-note">⚠️ 不会给具体的小红书帖子链接 — 没法验证某条帖子是否还活着。给的是搜索关键词,你自己在 app 里挑高赞博主。</p>
 </footer>
 
 <div class="counter" id="counter">
